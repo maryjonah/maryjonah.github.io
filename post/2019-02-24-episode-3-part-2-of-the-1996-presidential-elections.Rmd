@@ -1,0 +1,287 @@
+---
+title: 'Episode 3: Part 2 of the 1996 Presidential Elections'
+author: "Mary Jonah"
+date: '2019-02-24'
+slug: episode-3-part-2-of-the-1996-presidential-elections
+tags: []
+categories:
+- elections
+- ghana
+---
+
+## Introduction
+At the end of [Part 1 of Episode 3](http://www.maryjonah.me/2019/01/episode-3-the-1996-presidential-elections-part-2/) on my series on [Ghanaian elections](http://www.maryjonah.me/2018/07/my-first-blog-series-24-years-7-elections/), I performed a quick sum of the percentage values obtained by the political parties grouping them by region and some had 101%. This figure was exclusive of the percentage of rejected ballots.
+
+![Sum of Percentage Values Per Region for Parties](/img/part_1_episode_3.jpg)
+
+
+
+This did not sit well with me, so I decided to enquire from people whom I believe know much about elections than myself.I learnt that the percentage vote for each party is calculated as:
+
+`(Number of Party's Votes/**Total Number of Votes**)*100%`.
+
+This was right by me as the sum of all percentage values for each party and the percent of rejected ballots grouped by region should add up to **100%**.
+But I realized the percentage values from the original dataset was calculated as:
+
+`(Number of Party's Votes/**Total Number of Valid Votes**)*100%`
+
+Hence the difference in both calculations is the denominator.
+
+**NB**:
+
+So I got my Disqus up and running. Please let me know what you think about the method of calculating the percentage values for each political party. Come on let us discuss!! (no pun intended)
+
+With this idea in mind, I will have to update the final dataset from [Episode 3](https://github.com/maryjonah/maryjonah.github.io/blob/master/ghana_elections/1996/presidential_results_1996.csv). 
+Join me on this journey of **data updating** 
+
+
+## Importing Library and Reading In Data
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+
+vote_data <- read_csv("votes_data_1996.csv")
+vote_data <- vote_data[, -1]
+head(vote_data)
+```
+So I will be using my favorite R library **tidyverse** only as it contains all the functions I will need. 
+Next, I am going to read in the data, it is available for download [here](). This is a cleaned up but not final version of the data downloaded from the [Electoral Commission of Ghana's website](http://www.ec.gov.gh/resources/downloads/election-results/6-1996-presidential-election-results.html). 
+Below are a few actions I performed on it
+
+1. Removed few rows.
+2. Renamed the columns.
+3. Removed all row and sum totals.
+
+And if you would like to know the details on the above steps,check the sections from **Importing Libraries and Data Extraction** to **More data cleaning** in [Episode 3](http://www.maryjonah.me/2019/01/episode-3-the-1996-presidential-elections-part-2/) of the blog series.
+In the final line of the code above, first column which is an auto-increment value from 1.
+
+## Structure of the dataset
+```{r message=FALSE, warning=FALSE}
+dim(vote_data)
+
+summary(vote_data)
+```
+Have you noticed some columns have 0 as a value, let me give you a clue. Check the minimum values. Time is up, the image below shows the columns which have this value.
+
+![Columns with 0](/img/d3.jpg)
+
+
+1. **Number of Rejected Ballots for the NORTHERN REGION.**
+2. **% turnout for the NORTHERN REGION.**
+3. **% turnout for the UPPER WEST REGION.**
+
+Fortunately, these are values can be calculated in a few steps:
+
+* **For 1: Subtract the number of valid votes from total registered votes.**
+* **For 2 & 3: Calculate the Turnout percent for points 2 and 3**
+
+These calculations will be done along the line.
+
+## Storing Non-Percentage Columns
+```{r message=FALSE, warning=FALSE}
+non_percent <- vote_data[, !grepl("%", colnames(vote_data))]
+colnames(non_percent)
+
+head(non_percent, 2)
+```
+Next, a dataframe of columns whose values are not percentages: that are of the integer data type are separated since the rest of the calculation is based on them.
+In creating the dataframe, I used **regular expressions** to extract all columns without the **%** sign in its name.
+
+## Creating the calc_percent function and Calling it
+```{r message=FALSE, warning=FALSE}
+calc_percent <- function(col1, col2){
+    return ((col1/col2) * 100)
+}
+```
+Using the formula stated in **Introduction**, the function *calc_percent* is created. The details for the function are as follows:
+
+* The function takes 2 arguments:
+
+1. **col1: column whose percentage value we are interested in. Example: % of NDC's votes in the Northern Region** 
+2. **col2: column that has the total value. Example: Total Number of Votes in the Northern Region**.
+
+* **col1** is divided by **col2** and the result is multiplied by **100%** to return the percentage value of col1.
+* The result above is returned to the variable that called the function.
+* Also, note that the result of this function will be a Series of percentage value for each of the 10 regions.
+
+Moving on, I called this function to calculate the percentage of turnout for each region, the result was stored under the name **Percent_Turnout** and assigned back to the **non_percent** dataframe.
+
+```{r message=FALSE, warning=FALSE}
+non_percent["Percent_Turnout"] <- calc_percent(non_percent$Tt_Votes_Cast,non_percent$Tt_Reg_Voters)
+
+non_percent[, c("Region", "Percent_Turnout")]
+```
+The output shows usually more than 2/3rds of the registered voters come out to vote for the presidential elections. 
+
+Rightaway, I question I am interested in answering after the data extraction for all the Ghanaian elections will be *How much have this value changed since the 1992 elections till 2016 elections?*
+
+#### Remember, the 0 values? 
+Fortunately, 2 & 3: the Northern and Upper West Region have values for the column Turnout%. The lone ranger now is 1: **Number of Rejected Ballots in the Northern Region**. For this value only, I will re-calculate the number of rejected votes. This can be found in the column *Rejected_Ballots*.
+
+The formula is:
+`Rejected_Ballots = Tt_Votes_Cast - Valid_Votes`
+
+```{r message=FALSE, warning=FALSE}
+# number of rejected votes
+non_percent["Rejected_Ballots"] <- non_percent$Tt_Votes_Cast - non_percent$Valid_Votes
+
+# confirm Northern Region now has a value
+non_percent[8, c("Region","Rejected_Ballots")]
+```
+About **17,000** of rejected ballots, this is a huge figure. TO put this into perspective, in 2016, the only Independent candidate; [Jacob Osei Yeboah](https://en.wikipedia.org/wiki/Jacob_Osei_Yeboah) pulled **15,889** votes from all the regions.
+
+Going back to the function **calc_percent**, it is used to find percentage values per region for the details below. All of these would be assigned back to the *non_percent* dataframe as columns
+
+* **Valid Votes**
+* **Rejected Votes**
+* **Votes for NDC party**
+* **Votes for NPP**
+* **Votes for PNC**
+
+```{r message=FALSE, warning=FALSE}
+# confirm the number of columns before calculation
+dim(non_percent)
+
+# percentage of valid votes
+non_percent["Percent_Valid_Votes"] <- calc_percent(non_percent$Valid_Votes,
+                                                  non_percent$Tt_Votes_Cast)
+
+# percentage of rejected ballots
+non_percent["Percent_Reject_Ballots"] <- calc_percent(non_percent$Rejected_Ballots, non_percent$Tt_Votes_Cast)
+
+# percentage_ndc
+non_percent["Percentage_NDC"] <- calc_percent(non_percent$`J.J Rawlings`, non_percent$Tt_Votes_Cast)
+
+# percentage_npp
+non_percent["Percentage_NPP"] <- calc_percent(non_percent$`J.A Kufuor`, non_percent$Tt_Votes_Cast)
+
+# percentage_pnc
+non_percent["Percentage_PNC"] <- calc_percent(non_percent$`E.N Mahama`, non_percent$Tt_Votes_Cast)
+
+# validate an increase in number of columns
+dim(non_percent)
+```
+
+```{r message=FALSE, warning=message}
+head(select(non_percent, c("Region", "Percent_Turnout":"Percent_Reject_Ballots")),5)
+head(select(non_percent, c("Region", "Percentage_NDC":"Percentage_PNC")),5)
+```
+
+Using **select** from the **dplyr** package, I was able to show subsets of the columns. One can see that the values have been calculated successfully.
+
+## Verifying the Sum of Percentages Per Region
+This whole point of this article was to calculate using a different formula, the percentage values for political parties and other relevant columns.
+Next to group them by region and sum up the calculated values.
+Confirm the result is 100%.
+
+To cut the very long story short, the procedures below were used to verify the calculated results. 
+
+
+1. From the dataframe **non_percent**, assign all columns with **'Percentage_'** in their names to a new dataframe **party_percent_cols**. The list of affected columns are: *Percentage_NDC, Percentage_NPP* & *Percentage_PNC*.
+2. In the new dataframe, *party_percent_cols*:
+    + Add the columns: *Region* and *Rejected_Ballots* from the dataframe **non_percent**.
+    + Reorder the columns so the Region column comes first then it is followed by the other numerical columns.
+    + Convert the dataframe from wide to long format.
+    + Separate a column to get the party name.
+    + Group by the Region column and add the percentages.
+    + Keep the relevant rows, take off all rows with rejected votes
+
+### 1. Keep Columns with 'Percentage_'
+```{r message=FALSE, warning=FALSE}
+party_percent_cols <- non_percent[,grepl("Percentage_", colnames(non_percent))]
+colnames(party_percent_cols)
+head(party_percent_cols)
+```
+
+### 2.1 Add columns: Region & Percent_Reject_Ballots
+```{r message=FALSE, warning=FALSE}
+party_percent_cols[, c("Region","Percent_Reject_Ballots")] <- non_percent[, c("Region", "Percent_Reject_Ballots")]
+
+# verify the column names have been added
+colnames(party_percent_cols)
+
+# view the first 5 rows 
+head(party_percent_cols,5)
+```
+
+### 2.2. Reorder columns in party_percent_cols
+```{r message=FALSE, warning=FALSE}
+party_percent_cols <- party_percent_cols[, c(4,1,2,3,5)]
+head(party_percent_cols,5)
+```
+
+### 2.3. Convert dataframe from wide to long format.
+```{r message=FALSE, warning=FALSE}
+gather_percent_parties <- party_percent_cols %>%
+    gather("Percentage","PercentVote",-1)
+
+# the columns have reduced and the rows have .......
+dim(gather_percent_parties)
+
+head(gather_percent_parties)
+```
+
+### 2.4 Separate the Percentage column into 2 to get name of political party
+```{r message=FALSE, warning=FALSE}
+gather_percent_parties <- gather_percent_parties %>%
+    separate(Percentage, c("Percentage","PartyName"))
+
+# remove the Percentage column
+gather_percent_parties$Percentage <- NULL
+
+# the Percentage column has truly been taken off
+head(gather_percent_parties)
+```
+
+### 2.5. Group by Region column and add the percentages
+```{r message=FALSE, warning=FALSE}
+gather_percent_parties %>%
+    group_by(Region) %>%
+    summarise(Reg_Percent = sum(PercentVote))
+```
+
+### 2.6 Keep only relevant rows
+```{r message=FALSE, warning=FALSE}
+# advisable to check the dimensions before and after 
+dim(gather_percent_parties)
+
+percent_parties <- gather_percent_parties %>%
+  filter(PartyName != "Reject")
+
+dim(percent_parties)
+```
+
+
+## Updating the PercentVote column in the earlier dataset
+Now to the final part of this enterprise, 
+
+1. Read in the [final dataset](https://github.com/maryjonah/maryjonah.github.io/blob/master/ghana_elections/1996/presidential_results_1996.csv) from [Part 1, of Episode 3](http://www.maryjonah.me/2019/01/episode-3-the-1996-presidential-elections-part-2/) 
+2. Calculate the sum of percentages per Region before the update
+3. Replace the PercentVote column with the same from the **percent_parties** dataframe.
+4. To confirm the changes, calculate the sum of percentages per Region which should now be lower than 100%. 
+
+```{r message=FALSE, warning=FALSE}
+full_1996 <- read_csv("presidential_results_1996.csv")
+
+# Sum of values grouped by Region
+full_1996 %>%
+  group_by(Region) %>%
+  summarise(Regional_Percent = sum(PercentVote))
+
+```
+
+```{r message=FALSE, warning=FALSE}
+full_1996$PercentVote <- percent_parties$PercentVote
+
+# save the new data as a .csv file
+write.csv(full_1996, "final_presidential_results_1996.csv")
+
+full_1996 %>%
+  group_by(Region) %>%
+  summarise(Regional_Percent = sum(PercentVote))
+```
+
+This has been a very long blog post on an update of a single column. I could have easily updated the values and put a one-liner in Episode 2 informing everyone about the change. 
+
+But I wanted to go through the whole process with you and I am glad I did.
+The presidential results for 1996 Ghanaian elections is available here.
+So until the next blog post, thank you and bye bye.

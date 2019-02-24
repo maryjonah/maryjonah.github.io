@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.54.0 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Mary Jonah">
+<meta name="keywords" content="">
+<meta name="description" content="Welcome to the first post of my data analysis: 24 years and 8 elections. Ghana has been described as one of the most democratic countries on th continent of Africa. The country has successfully organised 10 elections since its independence. 8 of which were consecutively held from 1992 to 2016.
+This post will be about the 1992 elections. This was the 3rd election ever held in the country.Data about the presidential elections were stored on the Electoral Commission’s website and is accessible here.">
+
+
+<meta property="og:description" content="Welcome to the first post of my data analysis: 24 years and 8 elections. Ghana has been described as one of the most democratic countries on th continent of Africa. The country has successfully organised 10 elections since its independence. 8 of which were consecutively held from 1992 to 2016.
+This post will be about the 1992 elections. This was the 3rd election ever held in the country.Data about the presidential elections were stored on the Electoral Commission’s website and is accessible here.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Episode 1: The 1992 Presidential Results">
+<meta name="twitter:title" content="Episode 1: The 1992 Presidential Results">
+<meta property="og:url" content="https://maryjonah.github.io/2018/08/episode-1-the-1992-presidential-results/">
+<meta property="twitter:url" content="https://maryjonah.github.io/2018/08/episode-1-the-1992-presidential-results/">
+<meta property="og:site_name" content="Mary Jonah">
+<meta property="og:description" content="Welcome to the first post of my data analysis: 24 years and 8 elections. Ghana has been described as one of the most democratic countries on th continent of Africa. The country has successfully organised 10 elections since its independence. 8 of which were consecutively held from 1992 to 2016.
+This post will be about the 1992 elections. This was the 3rd election ever held in the country.Data about the presidential elections were stored on the Electoral Commission’s website and is accessible here.">
+<meta name="twitter:description" content="Welcome to the first post of my data analysis: 24 years and 8 elections. Ghana has been described as one of the most democratic countries on th continent of Africa. The country has successfully organised 10 elections since its independence. 8 of which were consecutively held from 1992 to 2016.
+This post will be about the 1992 elections. This was the 3rd election ever held in the country.Data about the presidential elections were stored on the Electoral Commission’s website and is accessible here.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2018-08-01T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-08-01T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="elections">
+    
+      <meta property="article:section" content="ghana">
+    
+  
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@jonahmary17">
+
+
+  <meta name="twitter:creator" content="@jonahmary17">
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://maryjonah.github.io/img/maryjonah.jpg">
+  <meta property="twitter:image" content="https://maryjonah.github.io/img/maryjonah.jpg">
+
+
+    <title>Episode 1: The 1992 Presidential Results</title>
+
+    <link rel="icon" href="https://maryjonah.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://maryjonah.github.io/2018/08/episode-1-the-1992-presidential-results/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://maryjonah.github.io/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132883556-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://maryjonah.github.io/">Mary Jonah</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://maryjonah.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://maryjonah.github.io/img/maryjonah.jpg" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://maryjonah.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://maryjonah.github.io/img/maryjonah.jpg" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Mary Jonah</h4>
+        
+          <h5 class="sidebar-profile-bio"><em>info@maryjonah.me</em></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://maryjonah.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://maryjonah.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://maryjonah.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/maryjonah" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/4899614/mary-jonah" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Episode 1: The 1992 Presidential Results
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-08-01T00:00:00Z">
+        
+  August 1, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://maryjonah.github.io/categories/elections">elections</a>, 
+    
+      <a class="category-link" href="https://maryjonah.github.io/categories/ghana">ghana</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p>Welcome to the first post of my data analysis: 24 years and 8 elections. Ghana has been described as one of the most democratic countries on th continent of Africa. The country has successfully organised 10 elections since its independence. 8 of which were consecutively held from 1992 to 2016.</p>
+<p>This post will be about the 1992 elections. This was the 3rd election ever held in the country.Data about the presidential elections were stored on the Electoral Commission’s website and is accessible <a href="http://www.ec.gov.gh/resources/downloads/election-results/2-1992-presidential-election-results/file.html">here</a>. There was no data about the parliamentary elections so we will work with what we currently have.</p>
+<div id="load-the-required-libraries-and-read-in-the-data" class="section level1">
+<h1>Load the required libraries and read in the data</h1>
+<pre class="r"><code># load the needed libraries
+library(tabulizer)
+library(tidyverse)
+
+# read table as dataframe,
+elect_1992 &lt;- extract_tables(&quot;1992-presidential-election-results.pdf&quot;,output=&quot;data.frame&quot;)
+
+# check the details about the variable: list has 1 element
+class(elect_1992)</code></pre>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<pre class="r"><code>length(elect_1992)</code></pre>
+<pre><code>## [1] 1</code></pre>
+<pre class="r"><code>str(elect_1992)</code></pre>
+<pre><code>## List of 1
+##  $ :&#39;data.frame&#39;:    25 obs. of  14 variables:
+##   ..$ X1992.PRESIDENTIAL.ELECTIONS.RESULTS: chr [1:25] &quot;&quot; &quot;&quot; &quot;REGION&quot; &quot;Darko&quot; ...
+##   ..$ X                                   : chr [1:25] &quot;&quot; &quot;NPP&quot; &quot;A. Adu Boahen&quot; &quot;%&quot; ...
+##   ..$ X.1                                 : chr [1:25] &quot;&quot; &quot;PNC&quot; &quot;%&quot; &quot;J.J Rawlings&quot; ...
+##   ..$ X.2                                 : chr [1:25] &quot;&quot; &quot;NIP&quot; &quot;Dr. Hilla Liman&quot; &quot;%&quot; ...
+##   ..$ X.3                                 : chr [1:25] &quot;&quot; &quot;NDC&quot; &quot;%&quot; &quot;Gen. Erskine&quot; ...
+##   ..$ X.4                                 : chr [1:25] &quot;&quot; &quot;PHP&quot; &quot;Kwabena&quot; &quot;%&quot; ...
+##   ..$ X.5                                 : chr [1:25] &quot;&quot; &quot;&quot; &quot;&quot; &quot;Val.votes&quot; ...
+##   ..$ X.6                                 : chr [1:25] &quot;&quot; &quot;&quot; &quot;&quot; &quot;% Turno&quot; ...
+##   ..$ X.7                                 : chr [1:25] &quot;&quot; &quot;&quot; &quot;&quot; &quot;tReg. Voters&quot; ...
+##   ..$ X.8                                 : chr [1:25] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   ..$ X.9                                 : num [1:25] NA NA NA NA 2.4 NA 2.2 NA 1.3 NA ...
+##   ..$ X.10                                : chr [1:25] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##   ..$ X.11                                : num [1:25] NA NA NA NA 47.8 NA 47.7 NA 46 NA ...
+##   ..$ X.12                                : chr [1:25] &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...</code></pre>
+<pre class="r"><code># check the class of the element
+class(elect_1992[[1]])</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code># extract the first item into a variable
+# verify the extracted element is a dataframe
+dframe_1992 &lt;- elect_1992[[1]]
+class(dframe_1992)</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code># view the first few rows of the dataframe
+head(dframe_1992)</code></pre>
+<pre><code>##   X1992.PRESIDENTIAL.ELECTIONS.RESULTS             X          X.1
+## 1                                                                
+## 2                                                NPP          PNC
+## 3                               REGION A. Adu Boahen            %
+## 4                                Darko             % J.J Rawlings
+## 5                              WESTERN        89,800         22.8
+## 6                                                                
+##               X.2          X.3     X.4       X.5     X.6          X.7
+## 1                                                                    
+## 2             NIP          NDC     PHP                               
+## 3 Dr. Hilla Liman            % Kwabena                               
+## 4               % Gen. Erskine       % Val.votes % Turno tReg. Voters
+## 5          33,760          8.6  21,924       5.6 239,477         60.7
+## 6                                                                    
+##     X.8 X.9    X.10 X.11    X.12
+## 1        NA           NA        
+## 2        NA           NA        
+## 3        NA           NA        
+## 4        NA           NA        
+## 5 9,325 2.4 394,286 47.8 858,246
+## 6        NA           NA</code></pre>
+</div>
+<div id="cleaning-the-column-and-row-names" class="section level1">
+<h1>Cleaning the column and row names</h1>
+<p>We will be cleaning the row and column names. First of all the,the beginning 2 rows and the final row in the dataframe will be deleted. The first row is a system generated list of columns and the second is an empty row. The total cum of values in each column is displayed in the last row. I have no need of this data so will remove that as well.</p>
+<pre class="r"><code># remove the first 2 and last rows
+dframe_1992 &lt;- dframe_1992[-c(1,2, nrow(dframe_1992)),]
+
+# re-assign column headers
+# rename columns in dataframe
+colnames(dframe_1992) &lt;- c(&quot;Region&quot;,&quot;A.Adu Boahen&quot;,&quot;NPP%Vote&quot;,
+                           &quot;Dr.Hilla Liman&quot;,&quot;PNC%Vote&quot;,
+                           &quot;Kwabena Darko&quot;,&quot;NIP%Vote&quot;,
+                           &quot;J.J Rawlings&quot;,&quot;NDC%Vote&quot;,
+                           &quot;Gen. Erskine&quot;,&quot;PHP%Vote&quot;,
+                           &quot;Valid Votes&quot;,&quot;Turnout%&quot;,
+                           &quot;Tt_Reg_Voters&quot;)
+
+# confirm the changes in column header
+colnames(dframe_1992)</code></pre>
+<pre><code>##  [1] &quot;Region&quot;         &quot;A.Adu Boahen&quot;   &quot;NPP%Vote&quot;       &quot;Dr.Hilla Liman&quot;
+##  [5] &quot;PNC%Vote&quot;       &quot;Kwabena Darko&quot;  &quot;NIP%Vote&quot;       &quot;J.J Rawlings&quot;  
+##  [9] &quot;NDC%Vote&quot;       &quot;Gen. Erskine&quot;   &quot;PHP%Vote&quot;       &quot;Valid Votes&quot;   
+## [13] &quot;Turnout%&quot;       &quot;Tt_Reg_Voters&quot;</code></pre>
+<pre class="r"><code>head(dframe_1992, n=3)</code></pre>
+<pre><code>##    Region  A.Adu Boahen     NPP%Vote  Dr.Hilla Liman     PNC%Vote
+## 3  REGION A. Adu Boahen            % Dr. Hilla Liman            %
+## 4   Darko             % J.J Rawlings               % Gen. Erskine
+## 5 WESTERN        89,800         22.8          33,760          8.6
+##   Kwabena Darko  NIP%Vote J.J Rawlings     NDC%Vote Gen. Erskine PHP%Vote
+## 3       Kwabena                                                        NA
+## 4             % Val.votes      % Turno tReg. Voters                    NA
+## 5        21,924       5.6      239,477         60.7        9,325      2.4
+##   Valid Votes Turnout% Tt_Reg_Voters
+## 3                   NA              
+## 4                   NA              
+## 5     394,286     47.8       858,246</code></pre>
+<pre class="r"><code># delete the next 2 rows as they are a duplication of the column headers
+# remove all empty rows with na.omit()
+dframe_1992 &lt;- dframe_1992[-c(1:2),]
+dframe_1992 &lt;- na.omit(dframe_1992)
+
+# reset the row names to start from 1,...
+rownames(dframe_1992) &lt;- seq(length=nrow(dframe_1992))
+
+# view the dimensions (number of rows and columns)
+dim(dframe_1992)</code></pre>
+<pre><code>## [1] 10 14</code></pre>
+</div>
+<div id="putting-the-data-into-a-long-format" class="section level1">
+<h1>Putting the data into a long format</h1>
+<p>One of the “Principles of tidy data” says observations should be rows and variables be stated as columns. A quick quiz: is the dataframe in a tidy format? 1, 2, 3 secs, 4 and 5. Time is up.</p>
+<p>No, it’s not tidy. The columns from <code>A.Adu Boahen</code> to <code>PHP%Vote</code> can be placed into 2 columns: <code>Candidate</code> and <code>PercentVote</code>. So each candidate has data for the number of valid votes per region and the vote in percent. After many tries, I decided to use 2 functions: <strong>dframe_Names</strong> and <strong>dframe_Percent</strong>. ## <em>dframe_Names</em></p>
+<pre class="r"><code>dframe_Names &lt;- function(dframe, rowNum){
+    namesOnly &lt;- dframe[, !grepl(&quot;%&quot;, colnames(dframe))]
+    namesOnly &lt;- gather(namesOnly, Candidate, NumVote, -1)
+    namesOnly &lt;- namesOnly[-c(rowNum:nrow(namesOnly)), ]
+    
+    return(namesOnly)
+}</code></pre>
+<p>This function takes 2 arguments: <em>dataframe</em> and <em>row number</em>. The row number is important as we want details about the candidates only. Any other information per region such as valid votes, the percentage of turnout and the total number of registered voters are not needed. - <em>1st line</em>: Extract columns that do not have ‘%’ in their names. - <em>2nd line</em>: Collapse, the extracted columns into key-value pairs with the exception of the <strong>Region</strong> column (-1) - <em>3rd line</em>: Delete all rows that do not have a canidate’s name.</p>
+<p>For line 3, let me expain further. 5 candidates stood for this election and there are 10 regions in this dataset. If we each candidate/region combination per row, then a total of 50 rows are all that we require since the first 5 columns returned from line 1 are names of candidates.This means that rows 51 till the end of dataframe contain values from the columns Valid Vote, Turnout% and Tt_Reg_Voters and we do not want these rows as part of the returned dataframe. - <em>4th line</em>: pass the dataframe to the variable that call this function</p>
+<pre class="r"><code># call the function: pass dframe_1992 and 51 as arguments
+names_1992 &lt;- dframe_Names(dframe_1992, 51)
+dim(names_1992)</code></pre>
+<pre><code>## [1] 50  3</code></pre>
+<pre class="r"><code>head(names_1992)</code></pre>
+<pre><code>##     Region    Candidate NumVote
+## 1  WESTERN A.Adu Boahen  89,800
+## 2  CENTRAL A.Adu Boahen  86,683
+## 3 GT ACCRA A.Adu Boahen 188,000
+## 4    VOLTA A.Adu Boahen  17,295
+## 5  EASTERN A.Adu Boahen 190,327
+## 6  ASHANTI A.Adu Boahen 431,380</code></pre>
+<div id="dframe_percent" class="section level2">
+<h2>dframe_Percent</h2>
+<p>The function returns the party name and the votes as a percentage for each candidate. This function follows in the footsteps of <strong>dframe_Names</strong>. The major difference is: - Region column was added as the returned columns from <code>grepl</code> does not include the names of the regions. - Column Turnout% was removed. - PartyName was also added created the PartyName column. The function takes 2 arguments: a dataframe and the row number to delete from.</p>
+<pre class="r"><code>dframe_Percent &lt;- function(dframe, rowNum){
+    percentOnly &lt;- dframe[,grepl(&quot;%&quot;,colnames(dframe))]
+    # add the Regions
+    percentOnly &lt;- percentOnly %&gt;%
+        mutate(Region = c(&quot;WESTERN&quot;,&quot;CENTRAL&quot;,&quot;GT ACCRA&quot;,&quot;VOLTA&quot;,
+                          &quot;EASTERN&quot;,&quot;ASHANTI&quot;,&quot;B/AHAFO&quot;,&quot;NORTHERN&quot;,
+                          &quot;UPPER EAST&quot;,&quot;UPPER WEST&quot;),
+               `Turnout%` = NULL)
+
+    # convert from wide to long format
+    # separate to get party name
+    percentLong &lt;- percentOnly %&gt;%
+        gather(Details, PercentVote) %&gt;%
+        separate(Details, c(&quot;PartyName&quot;,&quot;Vote&quot;),&quot;%&quot;)
+
+    percentLong &lt;- percentLong[-c(rowNum:nrow(percentLong)),]
+    return(percentLong)
+}</code></pre>
+<p>Just as with the <strong>dframe_Names</strong> function we pass a dataframe and the row number to delete the extra rows from. We pass 51 as the data from the 51st to the 60th row doesn’t contain data about any candidate.</p>
+<p>Don’t worry if a warning message about missing pieces is shown. The Region values do not have a % character so R fills it with NA and informs you about it.</p>
+<pre class="r"><code>percent_1992 &lt;- dframe_Percent(dframe_1992, 51)</code></pre>
+<pre><code>## Warning: Expected 2 pieces. Missing pieces filled with `NA` in 10 rows [51,
+## 52, 53, 54, 55, 56, 57, 58, 59, 60].</code></pre>
+<pre class="r"><code>dim(percent_1992)</code></pre>
+<pre><code>## [1] 50  3</code></pre>
+<pre class="r"><code>head(percent_1992)</code></pre>
+<pre><code>##   PartyName Vote PercentVote
+## 1       NPP Vote        22.8
+## 2       NPP Vote          26
+## 3       NPP Vote          37
+## 4       NPP Vote         3.6
+## 5       NPP Vote        37.7
+## 6       NPP Vote        60.5</code></pre>
+</div>
+</div>
+<div id="combining-dataframes" class="section level1">
+<h1>Combining dataframes</h1>
+<p>Final step is to combine both dataframes.Also, we need to delete the 5th column as it is a repetition of the word <em>Vote</em></p>
+<pre class="r"><code>full_1992 &lt;- cbind(names_1992, percent_1992)
+# delete 5th column
+full_1992 &lt;- full_1992[, -5]
+
+full_1992</code></pre>
+<pre><code>##        Region      Candidate NumVote PartyName PercentVote
+## 1     WESTERN   A.Adu Boahen  89,800       NPP        22.8
+## 2     CENTRAL   A.Adu Boahen  86,683       NPP          26
+## 3    GT ACCRA   A.Adu Boahen 188,000       NPP          37
+## 4       VOLTA   A.Adu Boahen  17,295       NPP         3.6
+## 5     EASTERN   A.Adu Boahen 190,327       NPP        37.7
+## 6     ASHANTI   A.Adu Boahen 431,380       NPP        60.5
+## 7     B/AHAFO   A.Adu Boahen 116,041       NPP        29.5
+## 8    NORTHERN   A.Adu Boahen  52,539       NPP        16.3
+## 9  UPPER EAST   A.Adu Boahen  21,164       NPP        10.5
+## 10 UPPER WEST   A.Adu Boahen  11,535       NPP         8.9
+## 11    WESTERN Dr.Hilla Liman  33,760       PNC         8.6
+## 12    CENTRAL Dr.Hilla Liman   6,308       PNC         1.9
+## 13   GT ACCRA Dr.Hilla Liman  22,027       PNC         403
+## 14      VOLTA Dr.Hilla Liman   7,431       PNC         1.6
+## 15    EASTERN Dr.Hilla Liman   9,747       PNC         1.9
+## 16    ASHANTI Dr.Hilla Liman  17,620       PNC         2.5
+## 17    B/AHAFO Dr.Hilla Liman  20,646       PNC         5.3
+## 18   NORTHERN Dr.Hilla Liman  35,452       PNC          11
+## 19 UPPER EAST Dr.Hilla Liman  65,644       PNC        32.5
+## 20 UPPER WEST Dr.Hilla Liman  48,075       PNC        37.1
+## 21    WESTERN  Kwabena Darko  21,924       NIP         5.6
+## 22    CENTRAL  Kwabena Darko  11,631       NIP         3.5
+## 23   GT ACCRA  Kwabena Darko  20,731       NIP         4.1
+## 24      VOLTA  Kwabena Darko   3,534       NIP         0.7
+## 25    EASTERN  Kwabena Darko  11,730       NIP         2.3
+## 26    ASHANTI  Kwabena Darko  25,298       NIP         3.6
+## 27    B/AHAFO  Kwabena Darko   8,979       NIP         2.3
+## 28   NORTHERN  Kwabena Darko   4,682       NIP         1.5
+## 29 UPPER EAST  Kwabena Darko   2,791       NIP         1.4
+## 30 UPPER WEST  Kwabena Darko   2,329       NIP         1.8
+## 31    WESTERN   J.J Rawlings 239,477       NDC        60.7
+## 32    CENTRAL   J.J Rawlings 222,097       NDC        66.5
+## 33   GT ACCRA   J.J Rawlings 270,825       NDC        53.4
+## 34      VOLTA   J.J Rawlings 446,365       NDC        93.2
+## 35    EASTERN   J.J Rawlings 288,726       NDC        57.3
+## 36    ASHANTI   J.J Rawlings 234,237       NDC        32.9
+## 37    B/AHAFO   J.J Rawlings 243,361       NDC        61.9
+## 38   NORTHERN   J.J Rawlings 203,004       NDC          63
+## 39 UPPER EAST   J.J Rawlings 108,999       NDC          54
+## 40 UPPER WEST   J.J Rawlings  66,049       NDC          51
+## 41    WESTERN   Gen. Erskine   9,325       PHP         2.4
+## 42    CENTRAL   Gen. Erskine   7,312       PHP         2.2
+## 43   GT ACCRA   Gen. Erskine   5,861       PHP         1.3
+## 44      VOLTA   Gen. Erskine   4,105       PHP         0.9
+## 45    EASTERN   Gen. Erskine   3,663       PHP         0.7
+## 46    ASHANTI   Gen. Erskine   4,049       PHP        0.57
+## 47    B/AHAFO   Gen. Erskine   3,837       PHP           1
+## 48   NORTHERN   Gen. Erskine  26,715       PHP         8.3
+## 49 UPPER EAST   Gen. Erskine   3,348       PHP         1.7
+## 50 UPPER WEST   Gen. Erskine   1,612       PHP         1.2</code></pre>
+<pre class="r"><code>full_1992[,1] &lt;- as.factor(full_1992[,1])
+full_1992[,5] &lt;- as.numeric(full_1992[,5])
+
+dim(full_1992)</code></pre>
+<pre><code>## [1] 50  5</code></pre>
+<pre class="r"><code>head(full_1992)</code></pre>
+<pre><code>##     Region    Candidate NumVote PartyName PercentVote
+## 1  WESTERN A.Adu Boahen  89,800       NPP        22.8
+## 2  CENTRAL A.Adu Boahen  86,683       NPP        26.0
+## 3 GT ACCRA A.Adu Boahen 188,000       NPP        37.0
+## 4    VOLTA A.Adu Boahen  17,295       NPP         3.6
+## 5  EASTERN A.Adu Boahen 190,327       NPP        37.7
+## 6  ASHANTI A.Adu Boahen 431,380       NPP        60.5</code></pre>
+<div id="quick-sanity-check" class="section level2">
+<h2>Quick sanity check</h2>
+<p>A check through our dataframe shows that the Percentage vote for Dr. Hilla Liman for the Greater Accra Region was supposed to be 4.03 instead of 403%</p>
+<pre class="r"><code>full_1992[13,5] &lt;- 4.03</code></pre>
+<p>I am glad you made it this far. The dataset is available <a href="https://github.com/maryjonah/maryjonah.github.io/blob/master/2018/08/episode-1-the-1992-presidential-results-rmd/presidential_results_1992.csv">here</a>. Thank you and do well to check the next episode.</p>
+<p><em>NB: In other articles J.J Rawlings represented Progressive Alliance. It was a coalition made up of the political parties: National Democrati Congress, National Covention Party and Every Ghanaian Living Everywhere.</em></p>
+</div>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://maryjonah.github.io/2019/01/episode-3-the-1996-presidential-elections-part-1/" data-tooltip="Episode 3:The 1996 Presidential Elections-Part 1">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://maryjonah.github.io/2018/07/my-first-blog-series-24-years-7-elections/" data-tooltip="My first blog series - 24 years 7 elections">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://maryjonah.github.io/2018/08/episode-1-the-1992-presidential-results/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://maryjonah.github.io/2018/08/episode-1-the-1992-presidential-results/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://maryjonah.github.io/2018/08/episode-1-the-1992-presidential-results/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Mary Jonah. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://maryjonah.github.io/2019/01/episode-3-the-1996-presidential-elections-part-1/" data-tooltip="Episode 3:The 1996 Presidential Elections-Part 1">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://maryjonah.github.io/2018/07/my-first-blog-series-24-years-7-elections/" data-tooltip="My first blog series - 24 years 7 elections">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://maryjonah.github.io/2018/08/episode-1-the-1992-presidential-results/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://maryjonah.github.io/2018/08/episode-1-the-1992-presidential-results/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://maryjonah.github.io/2018/08/episode-1-the-1992-presidential-results/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmaryjonah.github.io%2F2018%2F08%2Fepisode-1-the-1992-presidential-results%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fmaryjonah.github.io%2F2018%2F08%2Fepisode-1-the-1992-presidential-results%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fmaryjonah.github.io%2F2018%2F08%2Fepisode-1-the-1992-presidential-results%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://maryjonah.github.io/img/maryjonah.jpg" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Mary Jonah</h4>
+    
+      <div id="about-card-bio"><em>info@maryjonah.me</em></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Web Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Accra, Ghana
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2019/02/episode-3-part-2-of-the-1996-presidential-elections/">
+                <h3 class="media-heading">Episode 3: Part 2 of the 1996 Presidential Elections</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">IntroductionAt the end of Part 1 of Episode 3 on my series on Ghanaian elections, I performed a quick sum of the percentage values obtained by the political parties grouping them by region and some had 101%. This figure was exclusive of the percentage of rejected ballots.
+Sum of Percentage Values Per Region for Parties
+This did not sit well with me, so I decided to enquire from people whom I believe know much about elections than myself.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2019/01/how-i-got-financial-aid-from-coursera-for-fundamentals-of-visualization-with-tableau/">
+                <h3 class="media-heading">How I got Financial Aid from Coursera for &#34;Fundamentals of Visualization with Tableau&#34;</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">IntroductionI am really humbled by the words of encouragement I have received so far. It is these actions that keep me going during tough times. Sometimes I think I have it all figured out, at other times my efforts look like a waste of time.
+It is in this light that I want to share an amazing feat. I completed the Fundamentals of Visualization with Tableau offered on Coursera by University of Carlifonia kind courtesy of a Financial Aid I received from Coursera.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2019/01/episode-3-the-1996-presidential-elections-part-1/">
+                <h3 class="media-heading">Episode 3:The 1996 Presidential Elections-Part 1</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Happy New Year,I wish you all the best in 2019. Last year, I started a blog series on collecting Ghana’s election results from 1992 to 2016. In episode Episode 1 and Episode 2, I showed the process of getting the presidential and parliamentary elections for 1992.The datasets are available here: 1992 presidential elections and 1992 parliamentary elections.
+In this episode I will collect data on the 1996 elections. This data is available on the Electoral Commission of Ghana’s website.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2018/08/episode-1-the-1992-presidential-results/">
+                <h3 class="media-heading">Episode 1: The 1992 Presidential Results</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Welcome to the first post of my data analysis: 24 years and 8 elections. Ghana has been described as one of the most democratic countries on th continent of Africa. The country has successfully organised 10 elections since its independence. 8 of which were consecutively held from 1992 to 2016.
+This post will be about the 1992 elections. This was the 3rd election ever held in the country.Data about the presidential elections were stored on the Electoral Commission’s website and is accessible here.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2018/07/my-first-blog-series-24-years-7-elections/">
+                <h3 class="media-heading">My first blog series - 24 years 7 elections</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Hello everyone, after the very long break I am back. It wasn’t intentional: work and personal stuff but I am excited to be back. And as the popular phrase says “I am back with a baaaaang!!”. Image Source
+I am excited to announce that I will be starting a series of blog posts from Wednesday, the 1st of August 2018 about Ghanaian elections. First, will show you how to clean them and then analyze election trends since 1992.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/">
+                <h3 class="media-heading">Asempa to Adwuma (The 2017 and 2018 Ghanaian Budgets)</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">This post will be on text mining. I will be using the 2017 and 2018 Budget statements of Ghana for this tutorial.This post will not have in-depth explanation of the results of the analysis but rather show how one can perform analysis on documents all around us. I have provided the links to the documents in the next 2 paragraphs hence one can read and compare how they fare with the results obtained in the post.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2017/10/decoding-busiest-airport-numbers/">
+                <h3 class="media-heading">Decoding Busiest Airport Numbers</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Since the invention of the first airplane by Wilbur and Orville Wright in December 17, 1903, it has become one of the most important modes of transportation especially for long distances and the airports have facilitated this. Airports have metamorphosized from becoming “houses” for airplanes to include shopping malls, offices and showers.
+Different institutions have come up with rankings of airports, such as that of SKYTRAX WORLD AIRPORT AWARDS obtained by using customer satisfaction surveys, AirHelp Score’s Airport Worldwide Rankings which uses a combination of On-Time Performance, Quality of Service and Passenger sentiment.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2017/10/welcome-to-my-blog/">
+                <h3 class="media-heading">Welcome to my Blog</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Hello World,
+My name is Mary Jonah, from Ghana. Currently, a web developer with an Bsc in Information Technology with a dream of becoming a Data Scientist.
+I created this blog as I have been a beneficiary of posts from other blogs hence in the same measure I also want to give back with what I know. I hope you learn while you are here.
+Enjoy.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         8 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://maryjonah.github.io/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://maryjonah.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/maryjonah.github.io\/2018\/08\/episode-1-the-1992-presidential-results\/';
+          
+            this.page.identifier = '\/2018\/08\/episode-1-the-1992-presidential-results\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'maryjonah';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

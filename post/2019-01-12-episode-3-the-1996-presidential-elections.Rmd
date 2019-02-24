@@ -1,0 +1,236 @@
+---
+title: Episode 3:The 1996 Presidential Elections-Part 1
+author: Mary Jonah
+date: '2019-01-17'
+slug: episode-3-the-1996-presidential-elections-part-1
+categories: ["elections", "ghana"]
+tags: []
+---
+
+Happy New Year,I wish you all the best in 2019.
+Last year, I started a blog series on collecting Ghana's election results from 1992 to 2016. In episode [Episode 1](http://www.maryjonah.me/2018/08/episode-1-the-1992-presidential-results-rmd/) and [Episode 2](http://www.maryjonah.me/2018/08/episode-2-the-1992-parliamentary-results/), I showed the process of getting the presidential and parliamentary elections for 1992.The datasets are available here: [1992 presidential elections](https://github.com/maryjonah/maryjonah.github.io/blob/master/ghana_elections/1992/presidential_results_1992.csv) and [1992 parliamentary elections](https://github.com/maryjonah/maryjonah.github.io/blob/master/ghana_elections/1992/parliamentary_results_1992.csv).
+
+In this episode I will collect data on the 1996 elections.
+This data is available on the [Electoral Commission of Ghana's website](http://www.ec.gov.gh/resources/downloads/election-results/6-1996-presidential-election-results.html).
+Stay with me till the end to know what will be the plot in Part 2 of this Episode.
+
+The 1992 election had  3 presidential aspirants:
+
+- **J.J Rawlings** who represented **NDC (National Democratic Party)**.In 1992, he led the Alliance Coalition (was made up of the NDC, National Covention Party and Every Ghanaian Living Everywhere) into victory. As at the time of the elections he was the sitting president.
+- **J.A Kufuor** replaced A.Adu Boahen who was the **New Patriotic Party**'s candidate in the 1992 elections.
+- **E.N Mahama** just like the NPP candidate also led the **Peoples's National Congress** in 1996. He replaced Dr. Hilla Limann who was the party's candidate in 1992.
+
+At the end, the NDC candidate and sitting president: J.J Rawlings won the elections.
+
+## Importing Libraries and Data Extraction
+The data is an Excel file in the .xls extension. I prefer to use Hadley Wickham's **readxl** package as it allows me to extract data with ease.
+The function *read_excel* takes a single mandatory argument: *name of the file*.
+When passed with a single argument, this function reads all data from the first sheet only into a variable. We can tell the function to read any other sheet by specifying either the sheet's name or its index
+`read_excel("nameOfFile.xls", sheet="nameOfSheet") OR`
+`read_excel("nameOfFile.xls", sheet=3`
+The packages in the **tidyverse** library is for data cleaning and extraction.
+
+```{r message=FALSE, warning=FALSE}
+library(readxl)
+library(tidyverse)
+
+columns = c("Constituency_Num","Region","J.J Rawlings","NDC%Vote",
+"J.A Kufuor","NPP%Vote","E.N Mahama","PNC%Vote","Valid_Votes", "Rejected_Ballots","Tt_Votes_Cast","Tt_Reg_Voters","Turnout%")
+
+sheet1 <- read_excel("1996-presidential-election-results.xls", 
+col_names = columns, skip=2)
+
+#Dimensions of the data
+dim(sheet1)
+
+# The first 10 rows of the data
+head(sheet1, 10)
+```
+
+Why skip 2 rows of data? The first row contains NA values and the second contained the column header. It was easier skipping these rows `skip=2` and manually assigning column header when reading the file using `col_names=columns`. 
+
+## Extracting Regional Information: Votes & Region Names
+
+### Number of Votes Per Region
+A look at the data shows that it is in a wide format that is each row shows:
+**
+1. Name of the region.
+2. Number of votes a candidate obtained
+3. The number of votes as a percentage of total votes cast.
+4. Number of valid votes.
+5. Number of rejected votes.
+6. Total number of votes cast.
+7. Number of registered voters in the region.
+8. Percentage of turnout ([# total votes / # registered voters] * 100)
+**
+
+As it was done in [Episode 1](http://www.maryjonah.me/2018/08/episode-1-the-1992-presidential-results-rmd/), for the final data I want each row to contain the number of votes and the percentage of votes per candidate for a region. Since there are 3 candidates and 10 regions, I must have a total of 30 rows in my final dataset.
+
+```{r message=FALSE, warning=FALSE}
+# Find rows with regional total
+vote_data <- filter(sheet1, Region == "REGIONAL TOTAL" |
+Region == "REGIONAL TOTALS")
+vote_data
+```
+
+
+The total number of votes per region and the percentage of votes is stored in the final row for each block of constituency. I noticed they had a pattern: *that row had either **REGIONAL TOTAL** or **REGIONAL TOTALS** in the **Region** column.* 
+Combining the pipe (|) operator and the *filter* function from **dplyr** package, it returns what my heart desires: 10 rows and 13 columns of data.
+
+### Names of Regions
+The dataframe above has the Region column filled with either REGIONAL TOTAL or REGIONAL TOTALS as it was the search criteria used above.Using regular expressions, I return all rows in column Region having a value ending with **REGION**.
+If you are confused read the above statement again and have a look at the code.
+```{r message=FALSE, warning=FALSE}
+region_names <- sheet1[grepl("REGION$", sheet1$Region), "Region"]
+region_names
+```
+
+### Combine dataframes
+Next, assign the contents in *region_names* to the column *Region* in *vote_data*.Now we have a dataset with regional information only.
+```{r message=FALSE, warning=FALSE}
+vote_data["Region"] = region_names
+
+# replace all NA values with 0
+vote_data[is.na(vote_data)] <- 0
+
+# See the first 3 rows of vote_data
+head(vote_data, 3)
+```
+
+## More data cleaning
+The data in the first column is made up of NA values only so I will take off. Using the *dim()*, I will confirm the changes by checking the number of rows before and after the change.
+```{r message=FALSE, warning=FALSE}
+dim(vote_data)
+vote_data = vote_data[, -1]
+dim(vote_data)
+```
+
+## In the "GATHERING" of columns
+If you follow my blog, at this stage you will have an idea of what I am about to do based on the data we have now. 
+Let me give you a hint, go to [Episode 2](http://www.maryjonah.me/2018/08/episode-2-the-1992-parliamentary-results/) and the section **Cleaning the Dataframe**. 
+There I gave a detailed explanation of how to convert a dataframe from a wide format to a long format.
+```{r message=FALSE, warning=FALSE}
+dframe_Names <- function(dframe, rowNum){
+namesOnly <- dframe[, !grepl("%", colnames(dframe))]
+namesOnly <- gather(namesOnly, Candidate, NumVote, -1)
+namesOnly <- namesOnly[-c(rowNum:nrow(namesOnly)), ]
+
+return(namesOnly)
+}
+```
+A summarized explanation of the function is
+
+1. It takes a dataframe and a number
+2. Searches for columns that do not include *%* sign, this returns the columns: *Region, J.J Rawlings, J.A Kufuor, E.N Mahama, Valid_Votes, Rejected_Ballots, Tt_Votes_Cast and Tt_Reg_Voters*
+3. With the exception of the first column (Region), create a new dataframe with 3 columns.The number of rows in this dataframe will be `7 * 10 = 70`. 7 represents the number of returned columns in except the Region. 
+10 on the other hand represents the number of values in Region column. 
+The first column will be a duplication of the region names (70 times). 
+Second column will be the the names of the columns in 2 repeated 10 times
+Third column will be the values under each column.
+![Gather Details](img/img2.png) 
+4. We use the second argument to take from 1:number of rows out of the gathered dataframe.
+
+4. Finally, we cap the number of rows to be returned using the second argument.
+5. Returns the final dataframe to the variable that calls the function.
+
+### Calling the dframe_Names function
+```{r message=FALSE, warning=FALSE}
+names_1996 <- dframe_Names(vote_data, 31)
+dim(names_1996)
+
+head(names_1996)
+```
+
+### Getting the Percent Values
+Next I also want the percentage values each candidate received per region.
+Just like **dframe_Names**, this function is also explained in detail in ***Episode 1*** section *dframe_Percent*
+```{r message=FALSE, warning=FALSE}
+dframe_Percent <- function(dframe, rowNum){
+    percentOnly <- dframe[,grepl("%",colnames(dframe))]
+    # add the Regions
+    percentOnly <- percentOnly %>%
+        mutate(Region = c("WESTERN","CENTRAL","GT ACCRA","VOLTA",
+                          "EASTERN","ASHANTI","B/AHAFO","NORTHERN",
+                          "UPPER EAST","UPPER WEST"),
+               `Turnout%` = NULL)
+    
+    # convert from wide to long format
+    # separate to get party name
+    percentLong <- percentOnly %>%
+        gather(Details, PercentVote) %>%
+        separate(Details, c("PartyName","Vote"),"%")
+    
+    percentLong <- percentLong[-c(rowNum:nrow(percentLong)),]
+    return(percentLong)
+}
+```
+Summarizing the workings of the functions
+
+1. Also takes a dataframe and number of rows
+2. Keeps only rows with *%*: *NDC%Vote, NPP%Vote, PNC%Vote, Turnout%*
+3. Renames the Region column
+4. Separate the Details column so the party name can be a column on its own.
+5. Deletes the *Turnout%* column.
+6. Cap the number of rows to be returned
+7. Pass the final data frame to the variable that calls the function.
+
+### Calling the dframe_Percent function
+```{r message=FALSE, warning=FALSE}
+percent_1996 <- dframe_Percent(vote_data, 31)
+dim(percent_1996)
+
+head(percent_1996)
+```
+
+## Combine long dataframes
+The returned dataframes from the functions are combined using **cbind**
+I show how the data looks for some rows.
+```{r message=FALSE, warning=FALSE}
+full_1996 <- cbind(names_1996, percent_1996)
+full_1996[c(1,12,23),]
+```
+
+## Final cleanup on data
+The fifth column *Vote* is made up of all Vote so it is deleted.
+Rearrange the column so the numerical columns are shown after the string columns.
+```{r message=FALSE, warning=FALSE}
+full_1996 <- full_1996[, -5]
+
+# rearrange columns
+full_1996 <- full_1996[, c(1,2,4,3,5)]
+
+# convert the NumVote to integer
+full_1996[, 4] <- as.integer(full_1996[, 4])
+
+# convert the PercentVote to numeric with 2 decimal places
+full_1996[, 5] <- round(as.numeric(full_1996[,5]))
+
+# convert the rest of the columns: the first 3 columns to factors
+full_1996 <- full_1996 %>% mutate_if(is.character, as.factor)
+
+# confirm the data types have been changed
+str(full_1996)
+```
+
+## Sanity Check
+I want to verify the data collected. I would group the votes by regions and find the sum of their percentages.With the exception of *Northern Region* which did not have any value for data in the *Rejected_Ballots* column, the sum of percentages of votes should be less than 100%.
+```{r message=FALSE, warning=FALSE}
+full_1996 %>%
+    group_by(Region) %>%
+    summarise(Reg_Percent = sum(PercentVote))
+```
+Shockingly, majority of them arebetween 99.99 and 100.01 except Ashanti Region. But what about the percentage of rejected votes recorded per region?
+Let us check the values for *Ashanti Region*.
+```{r message=FALSE, warning=FALSE}
+full_1996[grepl("^ASHANTI", full_1996$Region),]
+```
+From the output above, NDC obtained half the number of votes the NPP obtained. Hence the value for PercentVote for both Regions is ?????
+In Part 2 of this episode, I will want to dig deeper into this.
+
+## The Data
+The data is written to a csv format and it is available [here](https://github.com/maryjonah/maryjonah.github.io/blob/master/ghana_elections/1996/presidential_results_1996.csv)
+```{r message=FALSE, warning=FALSE}
+write.csv(full_1996, "presidential_results_1996.csv")
+```
+
+Thank you and see you in Part 2.

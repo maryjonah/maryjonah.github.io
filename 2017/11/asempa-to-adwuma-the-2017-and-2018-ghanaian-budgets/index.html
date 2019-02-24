@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.54.0 with theme Tranquilpeak 0.4.3-SNAPSHOT">
+<meta name="author" content="Mary Jonah">
+<meta name="keywords" content="">
+<meta name="description" content="This post will be on text mining. I will be using the 2017 and 2018 Budget statements of Ghana for this tutorial.This post will not have in-depth explanation of the results of the analysis but rather show how one can perform analysis on documents all around us. I have provided the links to the documents in the next 2 paragraphs hence one can read and compare how they fare with the results obtained in the post.">
+
+
+<meta property="og:description" content="This post will be on text mining. I will be using the 2017 and 2018 Budget statements of Ghana for this tutorial.This post will not have in-depth explanation of the results of the analysis but rather show how one can perform analysis on documents all around us. I have provided the links to the documents in the next 2 paragraphs hence one can read and compare how they fare with the results obtained in the post.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Asempa to Adwuma (The 2017 and 2018 Ghanaian Budgets)">
+<meta name="twitter:title" content="Asempa to Adwuma (The 2017 and 2018 Ghanaian Budgets)">
+<meta property="og:url" content="https://maryjonah.github.io/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/">
+<meta property="twitter:url" content="https://maryjonah.github.io/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/">
+<meta property="og:site_name" content="Mary Jonah">
+<meta property="og:description" content="This post will be on text mining. I will be using the 2017 and 2018 Budget statements of Ghana for this tutorial.This post will not have in-depth explanation of the results of the analysis but rather show how one can perform analysis on documents all around us. I have provided the links to the documents in the next 2 paragraphs hence one can read and compare how they fare with the results obtained in the post.">
+<meta name="twitter:description" content="This post will be on text mining. I will be using the 2017 and 2018 Budget statements of Ghana for this tutorial.This post will not have in-depth explanation of the results of the analysis but rather show how one can perform analysis on documents all around us. I have provided the links to the documents in the next 2 paragraphs hence one can read and compare how they fare with the results obtained in the post.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2017-11-24T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2017-11-24T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="ghana">
+    
+      <meta property="article:section" content="budget">
+    
+  
+  
+
+
+<meta name="twitter:card" content="summary">
+
+  <meta name="twitter:site" content="@jonahmary17">
+
+
+  <meta name="twitter:creator" content="@jonahmary17">
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://maryjonah.github.io/img/maryjonah.jpg">
+  <meta property="twitter:image" content="https://maryjonah.github.io/img/maryjonah.jpg">
+
+
+    <title>Asempa to Adwuma (The 2017 and 2018 Ghanaian Budgets)</title>
+
+    <link rel="icon" href="https://maryjonah.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://maryjonah.github.io/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://maryjonah.github.io/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-132883556-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://maryjonah.github.io/">Mary Jonah</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://maryjonah.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://maryjonah.github.io/img/maryjonah.jpg" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://maryjonah.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://maryjonah.github.io/img/maryjonah.jpg" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Mary Jonah</h4>
+        
+          <h5 class="sidebar-profile-bio"><em>info@maryjonah.me</em></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://maryjonah.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://maryjonah.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://maryjonah.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/maryjonah" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/4899614/mary-jonah" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Asempa to Adwuma (The 2017 and 2018 Ghanaian Budgets)
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2017-11-24T00:00:00Z">
+        
+  November 24, 2017
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://maryjonah.github.io/categories/ghana">ghana</a>, 
+    
+      <a class="category-link" href="https://maryjonah.github.io/categories/budget">budget</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+
+<p>This post will be on text mining. I will be using the 2017 and 2018 Budget statements of Ghana for this tutorial.This post will not have in-depth explanation of the results of the analysis but rather show how one can perform analysis on documents all around us. I have provided the links to the documents <em>in the next 2 paragraphs</em> hence one can read and compare how they fare with the results obtained in the post.</p>
+<p>The Minister of Finance <a href="https://en.wikipedia.org/wiki/Ken_Ofori-Atta">Mr. Ken Ofori-Atta</a> read the 2017 budget on 2nd of March 2017 and the 2018 budget on 15th Nov. 2017.He gave two <a href="https://en.wikipedia.org/wiki/Twi">Twi</a> names for the budgets: <strong>Asempa Budget</strong> <em>(good news budget)</em> for 2017 and <strong>Adwuma Budget</strong> <em>(job budget)</em> for 2018.</p>
+<p>Many thanks to <a href="http://citifmonline.com/">Citi Fm</a> for making these documents readily available:<a href="http://citifmonline.com/wp-content/uploads/2017/03/2017-BUDGET-STATEMENT-AND-ECONOMIC-POLICY.pdf">2017</a> and <a href="http://citifmonline.com/wp-content/uploads/2017/11/2018-Budget-Statement.pdf">2018</a>.</p>
+<div id="import-libraries" class="section level2">
+<h2>Import libraries</h2>
+<p>To start we need to load the necessary packages. All of the packages used in this tutorial do not come with R and RStudio hence they need to be installed.<code>install.packages(readtext)</code>installs the readtext package and its dependencies.</p>
+<pre class="r"><code>#LOAD IN THE NEEDED LIBRARIES
+library(readtext)               # reading pdf files
+library(tidytext)               # generating tokens from pdf files 
+library(tidyverse)              # data manipulation / visualization
+library(stringr)                # regular expression
+library(wordcloud)              # generating wordclouds
+library(gridExtra)              # data visualization</code></pre>
+</div>
+<div id="get-the-data" class="section level2">
+<h2>Get the data</h2>
+<p>Next, I downloaded the files and stored them in variables.Remember to add the file extension: <strong>(.pdf)</strong> as an error will be thrown when this is excluded.</p>
+<pre class="r"><code>year2017 &lt;- &quot;2017-BUDGET-STATEMENT-AND-ECONOMIC-POLICY.pdf&quot;
+year2018 &lt;- &quot;2018-Budget-Statement.pdf&quot;</code></pre>
+</div>
+<div id="create-functions-and-themes" class="section level2">
+<h2>Create functions and themes</h2>
+<p>Before we start exploring what was in the budget readings, let us set up all the themes and functions required for cleaning and shaping the data:</p>
+<ul>
+<li><strong><em>theme.plot:</em></strong> will be the default theme to be used by all plots. Any additional style for a plot will be included when building the individual plot.</li>
+<li><strong><em>fxn.wdCount:</em></strong> a function that takes the name of the pdf and returns a dataframe of the count of words (numbers excluded) in descending order.</li>
+<li><strong><em>fxn.barChart:</em></strong> a function that takes the dataframe of words returned from <strong>fxn.wdCount</strong> and the year of the budget. It draws a bar chart of the first 20 most occured words.</li>
+<li><strong><em>fxn.wdCloud:</em></strong> this function takes a dataframe of words and draws a wordcloud of the first 100 most occuring words.</li>
+<li><strong><em>fxn.sentiYr:</em></strong> function will be used to calculate the total sentiment carried by a document.</li>
+</ul>
+<pre class="r"><code>############THEME############
+theme.plot &lt;-
+    theme(text=element_text(family=&quot;Kalinga&quot;,color=&quot;#eeeeee&quot;))+
+    theme(plot.background = element_rect(fill=&quot;#2b7c85&quot;))+
+    theme(plot.title = element_text(size=14, hjust=0.5, face=&quot;bold&quot;))+
+    theme(panel.background = element_rect(fill=&quot;#2b7c85&quot;))+
+    theme(panel.grid.major = element_line(color=&quot;#fafafa&quot;))+
+    theme(panel.grid.minor = element_line(color=alpha(&#39;#eeeeee&#39;,0.2)))+
+    theme(legend.background = element_rect(fill=&quot;#2b7c85&quot;))+
+    theme(legend.title = element_text(face=&quot;bold&quot;))+
+    theme(legend.key = element_rect(fill=NA))+
+    theme(axis.title = element_text(color=&quot;#eeeeee&quot;, face=&quot;bold&quot;))+
+    theme(axis.text = element_text(color=&quot;#eeeeee&quot;))+
+    theme(axis.ticks = element_blank())
+
+
+############FUNCTIONS#########
+
+fxn.wdCount &lt;- function(nameOfFile){
+            df.year &lt;- nameOfFile %&gt;%
+                        readtext() %&gt;%
+                        unnest_tokens(word, text) %&gt;%
+                        filter(str_detect(word, &quot;^[A-Za-z]+$&quot;)) %&gt;%
+                        anti_join(stop_words) %&gt;%
+                        count(word, sort=T)
+            return(df.year)
+}
+
+
+fxn.barChart &lt;- function(df.year, budgetYear){
+            ggplot(data=df.year[1:20,], aes(x=reorder(word,n), y=n)) +
+                geom_bar(stat=&quot;identity&quot;, fill=&quot;grey&quot;) +
+                geom_text(aes(label=n), hjust=1.1, color=&quot;#595959&quot;, fontface=&quot;bold&quot;)+ 
+                labs(x=&quot;&quot;, y=&quot;&quot;, title=paste(&quot;NUMBER OF OCCURENCES IN &quot;,budgetYear, &quot; BUDGET&quot;)) +
+                theme.plot +
+                #theme(panel.grid.minor = element_blank()) +
+                coord_flip()
+}
+
+
+fxn.wdCloud &lt;- function(df.year){
+                    df.year %&gt;%
+                        head(n=100) %&gt;%
+                        with(wordcloud(word, n, colors=brewer.pal(6, &quot;Dark2&quot;)))
+}
+
+
+fxn.sentiYr &lt;- function(df.year){
+    df.sentiYr &lt;- df.year %&gt;%
+        inner_join(get_sentiments(&quot;nrc&quot;)) %&gt;%
+        count(sentiment, sort=TRUE)
+    return(df.sentiYr)
+}</code></pre>
+<div id="naming-conventions" class="section level3">
+<h3>Naming conventions</h3>
+<p>I have a set of naming conventions for functions, themes, dataframes, etc so I can easily recognize them anytime they are needed.For simplicity,<em>functions:</em> <strong>fxn.nameOfFunction</strong>, <em>themes:</em> <strong>theme.nameOfFunction</strong>, <em>dataframe:</em> <strong>df.nameOfFunction</strong>.</p>
+</div>
+</div>
+<div id="tokenizing-the-budgets" class="section level2">
+<h2>Tokenizing the budgets</h2>
+<p>It is time to analyze the budget statements. First the content for each document is passed to the <em>fxn.wdCount()</em> to be split into a dataframe of words. Remember the names of the documents were passed to 2 variables, these will be the arguments to the function.The output from the function is stored in the variables <em>df.2017</em> and <em>df.2018</em>. The dimensions(number of columns and rows) and a few rows of the variables <em>df.2017</em> and <em>df.2018</em>are displayed.</p>
+<pre class="r"><code>df.2017 &lt;- fxn.wdCount(year2017)
+dim(df.2017)</code></pre>
+<pre><code>## [1] 5281    2</code></pre>
+<pre class="r"><code>head(df.2017)</code></pre>
+<pre><code>## # A tibble: 6 x 2
+##   word            n
+##   &lt;chr&gt;       &lt;int&gt;
+## 1 ministry      677
+## 2 percent       449
+## 3 ghana         369
+## 4 development   336
+## 5 national      318
+## 6 government    311</code></pre>
+<pre class="r"><code>df.2018 &lt;- fxn.wdCount(year2018)
+dim(df.2018)</code></pre>
+<pre><code>## [1] 5286    2</code></pre>
+<pre class="r"><code>head(df.2018)</code></pre>
+<pre><code>## # A tibble: 6 x 2
+##   word            n
+##   &lt;chr&gt;       &lt;int&gt;
+## 1 ghana         461
+## 2 speaker       434
+## 3 percent       416
+## 4 ministry      307
+## 5 programme     252
+## 6 development   249</code></pre>
+</div>
+<div id="draw-a-bar-chart-of-the-occurences" class="section level2">
+<h2>Draw a bar chart of the occurences</h2>
+<p>There are over 5000 rows of words in each dataframe. A bar chart of the first 20 most occured words is drawn.The function <em>fxn.barChart()</em> comes in handy here. I prefer the use of functions in that, instead of repeating lines of code for each plot, all are bundled into a single function. To use the function, an argument if required is passed and the plot is drawn or the plot passed to a variable if it so requires.</p>
+<p>The dataframe of words <strong>df.2017</strong> and <strong>df.2018</strong> and the year of budget reading are passed to the function.The year of reading is required for giving the plot a title.</p>
+<pre class="r"><code>fxn.barChart(df.2017, 2017)</code></pre>
+<p><img src="https://maryjonah.github.io/post/2017-11-24-asempa-budget-and-adwuma-budget_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>fxn.barChart(df.2018, 2018)</code></pre>
+<p><img src="https://maryjonah.github.io/post/2017-11-24-asempa-budget-and-adwuma-budget_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+</div>
+<div id="draw-a-wordcloud" class="section level2">
+<h2>Draw a wordcloud</h2>
+<p>Next a wordcloud of the first * <strong>100</strong> * most occured words is drawn. The dataframe of words <strong>(df.2017, df.2018)</strong> are passed as arguments to the function <em>fxn.wdCloud()</em>.</p>
+<pre class="r"><code>fxn.wdCloud(df.2017)</code></pre>
+<p><img src="https://maryjonah.github.io/post/2017-11-24-asempa-budget-and-adwuma-budget_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>fxn.wdCloud(df.2018)</code></pre>
+<p><img src="https://maryjonah.github.io/post/2017-11-24-asempa-budget-and-adwuma-budget_files/figure-html/unnamed-chunk-6-2.png" width="672" /> A quick glance shows that the words * <strong>ghana, government</strong> * and * <strong>national</strong> * featured prominently in both readings.The function <strong>unnest_tokens()</strong> returns a dataframe of words in lowercase by default hence * <strong>Ghana</strong> * is displayed as <strong><em>ghana</em></strong>.</p>
+</div>
+<div id="sentiment-analysis-of-the-budgets" class="section level2">
+<h2>Sentiment analysis of the budgets</h2>
+<p>I am interested in knowing the sentiments underlying the budget reading. The sentiment of the entire reading is the sum of sentiment score associated with each word.</p>
+<div id="the-sentiments-dataset" class="section level3">
+<h3>The <em>sentiments</em> dataset</h3>
+<p>There exists a dataset:<em>sentiments</em> in the <strong>tidytext</strong> package that helps to calculate the sentiment carried by a word. The dataset is made up of 4 columns: <em>word, sentiment,lexicon,score</em></p>
+<pre><code>## # A tibble: 27,314 x 4
+##    word        sentiment lexicon score
+##    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;   &lt;int&gt;
+##  1 abacus      trust     nrc        NA
+##  2 abandon     fear      nrc        NA
+##  3 abandon     negative  nrc        NA
+##  4 abandon     sadness   nrc        NA
+##  5 abandoned   anger     nrc        NA
+##  6 abandoned   fear      nrc        NA
+##  7 abandoned   negative  nrc        NA
+##  8 abandoned   sadness   nrc        NA
+##  9 abandonment anger     nrc        NA
+## 10 abandonment fear      nrc        NA
+## # ... with 27,304 more rows</code></pre>
+<p>There are over 27,000 words in the <em>sentiments</em> dataframe and 4 sentiment lexicons in the dataframe. We can retrieve a single lexicon for use with the <code>get_sentiments(&quot;nrc&quot;/&quot;afinn&quot;/&quot;bing&quot;,&quot;loughran&quot;)</code>.In this tutorial, we will be using the <strong>nrc</strong> lexicon. Each word is assigned to either 1 or more of 10 emotional categories: <em>trust, fear, negative, sadness, anger, surprise, positive, disgust, joy</em> and <em>anticipation</em>.</p>
+<p>In the code below, the score of each word found in the <em>nrc</em> lexicon is obtained and the scores for each category is summed up.<em>inner_join()</em> from the <strong>dplyr</strong> package which has been bundled into the <strong>tidyverse</strong> package is used to get words in our dataframe that also exists in <em>nrc</em> lexicon.</p>
+</div>
+<div id="calculate-sentiments-for-document" class="section level3">
+<h3>Calculate sentiments for document</h3>
+<p>We pass <strong>df.2017</strong> and <strong>df.2018</strong> to the function <em>fxn.sentiYr()</em> and show the first few rows</p>
+<pre class="r"><code>senti.2017 &lt;- fxn.sentiYr(df.2017)
+senti.2017</code></pre>
+<pre><code>## # A tibble: 10 x 2
+##    sentiment       nn
+##    &lt;chr&gt;        &lt;int&gt;
+##  1 positive       498
+##  2 trust          294
+##  3 negative       276
+##  4 anticipation   196
+##  5 fear           130
+##  6 joy            124
+##  7 anger          105
+##  8 sadness         98
+##  9 disgust         63
+## 10 surprise        57</code></pre>
+<pre class="r"><code>senti.2018 &lt;- fxn.sentiYr(df.2018)
+senti.2018</code></pre>
+<pre><code>## # A tibble: 10 x 2
+##    sentiment       nn
+##    &lt;chr&gt;        &lt;int&gt;
+##  1 positive       515
+##  2 trust          293
+##  3 negative       238
+##  4 anticipation   195
+##  5 fear           133
+##  6 joy            129
+##  7 anger           93
+##  8 sadness         76
+##  9 disgust         67
+## 10 surprise        57</code></pre>
+</div>
+</div>
+<div id="plotting-the-sentiments-of-the-document" class="section level2">
+<h2>Plotting the sentiments of the document</h2>
+<p>It will be interesting to see how the sentiments vary per year. Since the values are numeric as against categorical sentiments values, it is appropraite to use a <strong>scatterplot</strong>. ### Dataframe of scores First, a dataframe of sentiment scores for 2017 and 2018 is created using <em>bind_rows()</em>. A new column <em>year</em> is created and the year from which the data is from is used as the row name for each category score.</p>
+<pre class="r"><code># combine the years into a dataframe
+df.ttSenti &lt;- bind_rows(&quot;2017&quot; = senti.2017, &quot;2018&quot; = senti.2018, .id=&quot;year&quot;)
+df.ttSenti</code></pre>
+<pre><code>## # A tibble: 20 x 3
+##    year  sentiment       nn
+##    &lt;chr&gt; &lt;chr&gt;        &lt;int&gt;
+##  1 2017  positive       498
+##  2 2017  trust          294
+##  3 2017  negative       276
+##  4 2017  anticipation   196
+##  5 2017  fear           130
+##  6 2017  joy            124
+##  7 2017  anger          105
+##  8 2017  sadness         98
+##  9 2017  disgust         63
+## 10 2017  surprise        57
+## 11 2018  positive       515
+## 12 2018  trust          293
+## 13 2018  negative       238
+## 14 2018  anticipation   195
+## 15 2018  fear           133
+## 16 2018  joy            129
+## 17 2018  anger           93
+## 18 2018  sadness         76
+## 19 2018  disgust         67
+## 20 2018  surprise        57</code></pre>
+<div id="scatterplot-of-scores" class="section level3">
+<h3>Scatterplot of scores</h3>
+<p>We will use the <strong>scatter plot</strong> to illustrate how the scores for sentiments vary according to the category of emotions.They are colored based on the year from which the score was obtained.</p>
+<pre class="r"><code>df.ttSenti %&gt;%
+    ggplot(aes(sentiment, nn, color=year)) +
+    geom_point(size=5) +
+    ggtitle(&quot;SENTIMENTS AS CONVEYED IN THE BUDGET STATEMENTS&quot;) +
+    labs(x=&quot;&quot;, y=&quot;Sum of emotions&quot;) +
+    theme.plot +
+    theme(axis.text.x = element_text(angle=50))+
+    scale_color_manual(values=c(&quot;#f8766d&quot;,&quot;#3c3b1d&quot;))+
+    theme(axis.text.x=element_text(size=10,face=&quot;bold&quot;))</code></pre>
+<p><img src="https://maryjonah.github.io/post/2017-11-24-asempa-budget-and-adwuma-budget_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://maryjonah.github.io/2018/07/my-first-blog-series-24-years-7-elections/" data-tooltip="My first blog series - 24 years 7 elections">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://maryjonah.github.io/2017/10/decoding-busiest-airport-numbers/" data-tooltip="Decoding Busiest Airport Numbers">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://maryjonah.github.io/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://maryjonah.github.io/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://maryjonah.github.io/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Mary Jonah. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://maryjonah.github.io/2018/07/my-first-blog-series-24-years-7-elections/" data-tooltip="My first blog series - 24 years 7 elections">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://maryjonah.github.io/2017/10/decoding-busiest-airport-numbers/" data-tooltip="Decoding Busiest Airport Numbers">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://maryjonah.github.io/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://maryjonah.github.io/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://maryjonah.github.io/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmaryjonah.github.io%2F2017%2F11%2Fasempa-to-adwuma-the-2017-and-2018-ghanaian-budgets%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fmaryjonah.github.io%2F2017%2F11%2Fasempa-to-adwuma-the-2017-and-2018-ghanaian-budgets%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fmaryjonah.github.io%2F2017%2F11%2Fasempa-to-adwuma-the-2017-and-2018-ghanaian-budgets%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://maryjonah.github.io/img/maryjonah.jpg" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Mary Jonah</h4>
+    
+      <div id="about-card-bio"><em>info@maryjonah.me</em></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Web Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Accra, Ghana
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2019/02/episode-3-part-2-of-the-1996-presidential-elections/">
+                <h3 class="media-heading">Episode 3: Part 2 of the 1996 Presidential Elections</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">IntroductionAt the end of Part 1 of Episode 3 on my series on Ghanaian elections, I performed a quick sum of the percentage values obtained by the political parties grouping them by region and some had 101%. This figure was exclusive of the percentage of rejected ballots.
+Sum of Percentage Values Per Region for Parties
+This did not sit well with me, so I decided to enquire from people whom I believe know much about elections than myself.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2019/01/how-i-got-financial-aid-from-coursera-for-fundamentals-of-visualization-with-tableau/">
+                <h3 class="media-heading">How I got Financial Aid from Coursera for &#34;Fundamentals of Visualization with Tableau&#34;</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">IntroductionI am really humbled by the words of encouragement I have received so far. It is these actions that keep me going during tough times. Sometimes I think I have it all figured out, at other times my efforts look like a waste of time.
+It is in this light that I want to share an amazing feat. I completed the Fundamentals of Visualization with Tableau offered on Coursera by University of Carlifonia kind courtesy of a Financial Aid I received from Coursera.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2019/01/episode-3-the-1996-presidential-elections-part-1/">
+                <h3 class="media-heading">Episode 3:The 1996 Presidential Elections-Part 1</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Happy New Year,I wish you all the best in 2019. Last year, I started a blog series on collecting Ghana’s election results from 1992 to 2016. In episode Episode 1 and Episode 2, I showed the process of getting the presidential and parliamentary elections for 1992.The datasets are available here: 1992 presidential elections and 1992 parliamentary elections.
+In this episode I will collect data on the 1996 elections. This data is available on the Electoral Commission of Ghana’s website.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2018/08/episode-1-the-1992-presidential-results/">
+                <h3 class="media-heading">Episode 1: The 1992 Presidential Results</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Welcome to the first post of my data analysis: 24 years and 8 elections. Ghana has been described as one of the most democratic countries on th continent of Africa. The country has successfully organised 10 elections since its independence. 8 of which were consecutively held from 1992 to 2016.
+This post will be about the 1992 elections. This was the 3rd election ever held in the country.Data about the presidential elections were stored on the Electoral Commission’s website and is accessible here.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2018/07/my-first-blog-series-24-years-7-elections/">
+                <h3 class="media-heading">My first blog series - 24 years 7 elections</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Hello everyone, after the very long break I am back. It wasn’t intentional: work and personal stuff but I am excited to be back. And as the popular phrase says “I am back with a baaaaang!!”. Image Source
+I am excited to announce that I will be starting a series of blog posts from Wednesday, the 1st of August 2018 about Ghanaian elections. First, will show you how to clean them and then analyze election trends since 1992.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/">
+                <h3 class="media-heading">Asempa to Adwuma (The 2017 and 2018 Ghanaian Budgets)</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Nov 11, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">This post will be on text mining. I will be using the 2017 and 2018 Budget statements of Ghana for this tutorial.This post will not have in-depth explanation of the results of the analysis but rather show how one can perform analysis on documents all around us. I have provided the links to the documents in the next 2 paragraphs hence one can read and compare how they fare with the results obtained in the post.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2017/10/decoding-busiest-airport-numbers/">
+                <h3 class="media-heading">Decoding Busiest Airport Numbers</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Since the invention of the first airplane by Wilbur and Orville Wright in December 17, 1903, it has become one of the most important modes of transportation especially for long distances and the airports have facilitated this. Airports have metamorphosized from becoming “houses” for airplanes to include shopping malls, offices and showers.
+Different institutions have come up with rankings of airports, such as that of SKYTRAX WORLD AIRPORT AWARDS obtained by using customer satisfaction surveys, AirHelp Score’s Airport Worldwide Rankings which uses a combination of On-Time Performance, Quality of Service and Passenger sentiment.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://maryjonah.github.io/2017/10/welcome-to-my-blog/">
+                <h3 class="media-heading">Welcome to my Blog</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Hello World,
+My name is Mary Jonah, from Ghana. Currently, a web developer with an Bsc in Information Technology with a dream of becoming a Data Scientist.
+I created this blog as I have been a beneficiary of posts from other blogs hence in the same measure I also want to give back with what I know. I hope you learn while you are here.
+Enjoy.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         8 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://maryjonah.github.io/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://maryjonah.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/maryjonah.github.io\/2017\/11\/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets\/';
+          
+            this.page.identifier = '\/2017\/11\/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'maryjonah';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

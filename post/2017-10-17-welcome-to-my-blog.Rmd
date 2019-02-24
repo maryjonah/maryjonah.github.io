@@ -1,0 +1,20 @@
+---
+title: "Welcome to my Blog"
+author: "Mary Jonah"
+date: 2017-10-17
+categories: ["blog","welcome"]
+tags: []
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+Hello World,
+
+My name is Mary Jonah, from Ghana. Currently, a web developer with an Bsc in Information Technology with a dream of becoming a Data Scientist.
+
+I created this blog as I have been a beneficiary of posts from other blogs hence in the same measure I also want to give back with what I know. 
+I hope you learn while you are here.
+
+Enjoy.

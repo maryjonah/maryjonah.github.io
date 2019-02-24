@@ -1,0 +1,173 @@
+---
+title: Asempa to Adwuma (The 2017 and 2018 Ghanaian Budgets)
+author: "Mary Jonah"
+date: '2017-11-24'
+categories: ["ghana","budget"]
+tags: []
+---
+
+
+This post will be on text mining. I will be using the 2017 and 2018 Budget statements of Ghana for this tutorial.This post will not have in-depth explanation of the results of the analysis but rather show how one can perform analysis on documents all around us. I have provided the links to the documents *in the next 2 paragraphs* hence one can read and compare how they fare with the results obtained in the post.
+
+The Minister of Finance [Mr. Ken Ofori-Atta](https://en.wikipedia.org/wiki/Ken_Ofori-Atta) read the 2017 budget on 2nd of March 2017 and the 2018 budget on 15th Nov. 2017.He gave two [Twi](https://en.wikipedia.org/wiki/Twi) names for the budgets:  **Asempa Budget**  *(good news budget)* for 2017 and  **Adwuma Budget** *(job budget)* for 2018.
+
+Many thanks to [Citi Fm](http://citifmonline.com/) for making these documents readily available:[2017](http://citifmonline.com/wp-content/uploads/2017/03/2017-BUDGET-STATEMENT-AND-ECONOMIC-POLICY.pdf) and [2018](http://citifmonline.com/wp-content/uploads/2017/11/2018-Budget-Statement.pdf).
+
+## Import libraries
+To start we need to load the necessary packages. 
+All of the packages used in this tutorial do not come with R and RStudio hence they need to be installed.`install.packages(readtext)`installs the readtext package and its dependencies.
+```{r message=FALSE, warning=FALSE}
+#LOAD IN THE NEEDED LIBRARIES
+library(readtext)               # reading pdf files
+library(tidytext)               # generating tokens from pdf files 
+library(tidyverse)              # data manipulation / visualization
+library(stringr)                # regular expression
+library(wordcloud)              # generating wordclouds
+library(gridExtra)              # data visualization
+```
+## Get the data
+Next, I downloaded the files and stored them in variables.Remember to add the file extension: **(.pdf)** as an error will be thrown when this is excluded.
+```{r message=FALSE, warning=FALSE}
+year2017 <- "2017-BUDGET-STATEMENT-AND-ECONOMIC-POLICY.pdf"
+year2018 <- "2018-Budget-Statement.pdf"
+```
+
+##Create functions and themes
+Before we start exploring what was in the budget readings, let us set up all the themes and functions required for cleaning and shaping the data:
+
+* ***theme.plot:*** will be the default theme to be used by all plots. Any additional style for a plot will be included when building the individual plot.
+* ***fxn.wdCount:*** a function that takes the name of the pdf and returns a dataframe of the count of words (numbers excluded) in descending order.
+* ***fxn.barChart:*** a function that takes the dataframe of words returned from **fxn.wdCount** and the year of the budget. It draws a bar chart of the first 20 most occured words.
+* ***fxn.wdCloud:*** this function takes a dataframe of words and draws a wordcloud of the first 100 most occuring words.
+* ***fxn.sentiYr:*** function will be used to calculate the total sentiment carried by a document.
+```{r}
+############THEME############
+theme.plot <-
+    theme(text=element_text(family="Kalinga",color="#eeeeee"))+
+    theme(plot.background = element_rect(fill="#2b7c85"))+
+    theme(plot.title = element_text(size=14, hjust=0.5, face="bold"))+
+    theme(panel.background = element_rect(fill="#2b7c85"))+
+    theme(panel.grid.major = element_line(color="#fafafa"))+
+    theme(panel.grid.minor = element_line(color=alpha('#eeeeee',0.2)))+
+    theme(legend.background = element_rect(fill="#2b7c85"))+
+    theme(legend.title = element_text(face="bold"))+
+    theme(legend.key = element_rect(fill=NA))+
+    theme(axis.title = element_text(color="#eeeeee", face="bold"))+
+    theme(axis.text = element_text(color="#eeeeee"))+
+    theme(axis.ticks = element_blank())
+
+
+############FUNCTIONS#########
+
+fxn.wdCount <- function(nameOfFile){
+            df.year <- nameOfFile %>%
+                        readtext() %>%
+                        unnest_tokens(word, text) %>%
+                        filter(str_detect(word, "^[A-Za-z]+$")) %>%
+                        anti_join(stop_words) %>%
+                        count(word, sort=T)
+            return(df.year)
+}
+
+
+fxn.barChart <- function(df.year, budgetYear){
+            ggplot(data=df.year[1:20,], aes(x=reorder(word,n), y=n)) +
+                geom_bar(stat="identity", fill="grey") +
+                geom_text(aes(label=n), hjust=1.1, color="#595959", fontface="bold")+ 
+                labs(x="", y="", title=paste("NUMBER OF OCCURENCES IN ",budgetYear, " BUDGET")) +
+                theme.plot +
+                #theme(panel.grid.minor = element_blank()) +
+                coord_flip()
+}
+
+
+fxn.wdCloud <- function(df.year){
+                    df.year %>%
+                        head(n=100) %>%
+                        with(wordcloud(word, n, colors=brewer.pal(6, "Dark2")))
+}
+
+
+fxn.sentiYr <- function(df.year){
+    df.sentiYr <- df.year %>%
+        inner_join(get_sentiments("nrc")) %>%
+        count(sentiment, sort=TRUE)
+    return(df.sentiYr)
+}
+```
+### Naming conventions
+I have a set of naming conventions for functions, themes, dataframes, etc so I can easily recognize them anytime they are needed.For simplicity,*functions:* **fxn.nameOfFunction**, *themes:* **theme.nameOfFunction**, *dataframe:* **df.nameOfFunction**.
+
+## Tokenizing the budgets
+It is time to analyze the budget statements. First the content for each document is passed to the *fxn.wdCount()* to be split into a dataframe of words. Remember the names of the documents were passed to 2 variables, these will be the arguments to the function.The output from the function is stored in the variables *df.2017* and *df.2018*. The dimensions(number of columns and rows) and a few rows of the variables *df.2017* and *df.2018*are displayed.
+```{r warning=FALSE, message=FALSE}
+df.2017 <- fxn.wdCount(year2017)
+dim(df.2017)
+head(df.2017)
+
+df.2018 <- fxn.wdCount(year2018)
+dim(df.2018)
+head(df.2018)
+```
+
+## Draw a bar chart of the occurences
+There are over 5000 rows of words in each dataframe. A bar chart of the first 20 most occured words is drawn.The function *fxn.barChart()* comes in handy here. I prefer the use of functions in that, instead of repeating lines of code for each plot, all are bundled into a single function. To use the function, an argument if required is passed and the plot is drawn or the plot passed to a variable if it so requires.
+
+The dataframe of words **df.2017** and **df.2018** and the year of budget reading are passed to the function.The year of reading is required for giving the plot a title.
+```{r warning=FALSE, message=FALSE}
+fxn.barChart(df.2017, 2017)
+fxn.barChart(df.2018, 2018)
+```
+
+## Draw a wordcloud 
+Next a wordcloud of the first * **100** * most occured words is drawn. The dataframe of words **(df.2017, df.2018)** are passed as arguments to the function *fxn.wdCloud()*.
+```{r message=FALSE, warning=FALSE}
+fxn.wdCloud(df.2017)
+fxn.wdCloud(df.2018)
+```
+A quick glance shows that the words * **ghana, government** * and * **national** * featured prominently in both readings.The function **unnest_tokens()** returns a dataframe of words in lowercase by default hence * **Ghana** * is displayed as ***ghana***.
+
+## Sentiment analysis of the budgets
+I am interested in knowing the sentiments underlying the budget reading. The sentiment of the entire reading is the sum of sentiment score associated with each word.
+
+### The *sentiments* dataset
+There exists a dataset:*sentiments* in the **tidytext** package that helps to calculate the sentiment carried by a word. The dataset is made up of 4 columns: *word, sentiment,lexicon,score*
+```{r echo=FALSE}
+sentiments
+```
+There are over 27,000 words in the *sentiments* dataframe and 4 sentiment lexicons in the dataframe. We can retrieve a single lexicon for use with the `get_sentiments("nrc"/"afinn"/"bing","loughran")`.In this tutorial, we will be using the **nrc** lexicon.  Each word is assigned to either 1 or more of 10 emotional categories: *trust, fear, negative, sadness, anger, surprise, positive, disgust, joy* and *anticipation*.
+
+In the code below, the score of each word found in the *nrc* lexicon is obtained and the scores for each category is summed up.*inner_join()* from the **dplyr** package which has been bundled into the **tidyverse** package is used to get words in our dataframe that also exists in *nrc* lexicon.
+
+### Calculate sentiments for document
+We pass **df.2017** and **df.2018** to the function *fxn.sentiYr()* and show the first few rows
+```{r message=FALSE, warning=FALSE}
+senti.2017 <- fxn.sentiYr(df.2017)
+senti.2017
+senti.2018 <- fxn.sentiYr(df.2018)
+senti.2018
+```
+
+## Plotting the sentiments of the document
+It will be interesting to see how the sentiments vary per year. Since the values are numeric as against categorical sentiments values, it is appropraite to use a **scatterplot**. 
+### Dataframe of scores
+First, a dataframe of sentiment scores for 2017 and 2018 is created using *bind_rows()*. A new column *year* is created and the year from which the data is from is used as the row name for each category score.
+```{r message=FALSE, warning=FALSE}
+# combine the years into a dataframe
+df.ttSenti <- bind_rows("2017" = senti.2017, "2018" = senti.2018, .id="year")
+df.ttSenti
+```
+
+### Scatterplot of scores
+We will use the **scatter plot** to illustrate how the scores for sentiments vary according to the category of emotions.They are colored based on the year from which the score was obtained.
+```{r message=FALSE, warning=FALSE}
+df.ttSenti %>%
+    ggplot(aes(sentiment, nn, color=year)) +
+    geom_point(size=5) +
+    ggtitle("SENTIMENTS AS CONVEYED IN THE BUDGET STATEMENTS") +
+    labs(x="", y="Sum of emotions") +
+    theme.plot +
+    theme(axis.text.x = element_text(angle=50))+
+    scale_color_manual(values=c("#f8766d","#3c3b1d"))+
+    theme(axis.text.x=element_text(size=10,face="bold"))
+```

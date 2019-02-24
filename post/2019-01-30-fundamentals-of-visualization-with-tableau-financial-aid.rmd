@@ -1,0 +1,63 @@
+---
+title: How I got Financial Aid from Coursera for "Fundamentals of Visualization with Tableau"
+author: Mary Jonah
+date: '2019-01-30'
+slug: how-I-got-financial-aid-from-coursera-for-fundamentals-of-visualization-with-tableau
+categories: ["tableau", "financial aid"]
+tags: []
+---
+
+### Introduction
+I am really humbled by the words of encouragement I have received so far. It is these actions that keep me going during tough times. Sometimes I think I have it all figured out, at other times my efforts look like a waste of time.
+
+It is in this light that I want to share an amazing feat. I completed the [**Fundamentals of Visualization with Tableau**](https://www.coursera.org/learn/data-visualization-tableau) offered on **Coursera** by **University of Carlifonia** kind courtesy of a Financial Aid I received from Coursera.
+
+![Fundamentals of Data Visualization with Tableau Certificate](/img/mary_coursera_cert.jpg)
+
+
+You can also click [*here*](https://www.coursera.org/account/accomplishments/certificate/Z3R6YMZFAR7Q) to confirm the image.
+
+I would be talking about 2 items:
+
+1. Why I decided to apply for the Financial Aid?
+2. The process 
+
+Let's get started!!
+
+
+### Why the Financial Aid?
+In the first week of 2019, I did a review of my journey into the data science field so far. I aspire to be a data analyst and it has been a rollercoaster ride. I'm not where I want to be yet but I'm glad I started and I have been able to make it this far.
+The results showed I have improved my skills in *data gathering (I am great with web,csv,pdf), data cleaning and analysis*. The areas which needs improvement are *visualization, version control and extracting data from databases*.
+
+In my search for resources that can help me in the weaker areas I came across the [**Data Visualization with Tableau Specialization**](https://www.coursera.org/specializations/data-visualization). Don't be deceived with the name, yes primary tool used in the class is [*Tableau*](https://www.tableau.com/) but it teaches much more. 
+I loved the entire specialization and I chose to complete all the courses.
+It comes with 4 courses and 1 project:
+
+1. Fundamentals of Visualization with Tableau.
+2. Essential Design Principles for Tableau.
+3. Visual Analytics with Tableau.
+4. Creating Dashboards and Storytelling with Tableau.
+5. Data Visualization with Tableau Project
+
+Each course goes for **$79** or you get the entire specialization for **$316**. My finances were not favourable and I wanted to take these courses. I enrolled for the first course by auditing. I also noticed that next to the start date, there was a **Financial aid available** statement there, so I decided to apply.
+
+### The Application Process
+
+* It takes 15 days for one to receive feedback on the application.
+* You are requested to give correct information and also commit to complete the course (lovely people of the world plssss complete the work so they are encouraged to do more)
+* You also be asked to enter the text *I agree to the terms above* in a search field (terms are committing to complete the course and provide correct information)
+* Background Information such as *Annual Income, Educational Background, Employment Status* are asked of
+* You will also be asked how much you can afford to pay.
+* Using 150 words or less, one has to state why he/she requires financial aid and the next question is also how the course will help achieve your career goals.
+* Finally you will be asked if you will consider low-interest loan for the course.
+
+### My takeaways
+On the 21st of January 2019, I received an email with good news. I had received the aid and I can take the course with quizzes and peer-reviews. I had already started so I joined a different session and today I completed Fundamentals of Visualization with Tableau. These are a few pointers to help anyone who wants to apply:
+
+1. Take time to read through the course. If you are applying just for the sake of it, I bet you the questions *Why the Financial Aid and How the course will help achieve your career goals* will fish you out.
+2. If you have previous work which relates to the course's area, talk about it. I shared a link to my [blog](http://www.maryjonah.me/) :), I spoke about all my previous courses and gave details on what I learnt from it.
+3. Start, what do you have to lose. For me I wanted to enjoy the benefits of my peers giving me feedback on my work. This is something I have lacked in my journey.
+
+Thank you Coursera for this and yessss I completed my course. 
+I am coming back for [Essential Design Principles for Tableau](https://www.coursera.org/learn/dataviz-design?specialization=data-visualization).
+![](https://media.giphy.com/media/3ohs7I8cEtE76PhJQc/giphy.gif)

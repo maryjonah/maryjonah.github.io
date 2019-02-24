@@ -1,0 +1,167 @@
+---
+title: 'Episode 1: The 1992 Presidential Results'
+author: "Mary Jonah"
+date: '2018-08-01'
+categories: ["elections","ghana"]
+tags: []
+---
+
+Welcome to the first post of my data analysis: 24 years and 8 elections.
+Ghana has been described as one of the most democratic countries on th continent of Africa. The country has successfully organised 10 elections since its independence. 
+8 of which were consecutively held from 1992 to 2016.
+
+This post will be about the 1992 elections. This was the 3rd election ever held in the country.Data about the presidential elections were stored on the Electoral Commission's website and is accessible [here](http://www.ec.gov.gh/resources/downloads/election-results/2-1992-presidential-election-results/file.html). There was no data about the parliamentary elections so we will work with what we currently have.
+
+# Load the required libraries and read in the data
+```{r message=FALSE, warning=FALSE}
+# load the needed libraries
+library(tabulizer)
+library(tidyverse)
+
+# read table as dataframe,
+elect_1992 <- extract_tables("1992-presidential-election-results.pdf",output="data.frame")
+
+# check the details about the variable: list has 1 element
+class(elect_1992)
+length(elect_1992)
+str(elect_1992)
+
+# check the class of the element
+class(elect_1992[[1]])
+
+# extract the first item into a variable
+# verify the extracted element is a dataframe
+dframe_1992 <- elect_1992[[1]]
+class(dframe_1992)
+
+# view the first few rows of the dataframe
+head(dframe_1992)
+
+```
+
+# Cleaning the column and row names
+We will be cleaning the row and column names.
+First of all the,the beginning 2 rows and the final row in the dataframe will be deleted.
+The first row is a system generated list of columns and the second is an empty row.
+The total cum of values in each column is displayed in the last row. I have no need of this data so will remove that as well.
+```{r message=FALSE, warning=FALSE}
+# remove the first 2 and last rows
+dframe_1992 <- dframe_1992[-c(1,2, nrow(dframe_1992)),]
+
+# re-assign column headers
+# rename columns in dataframe
+colnames(dframe_1992) <- c("Region","A.Adu Boahen","NPP%Vote",
+                           "Dr.Hilla Liman","PNC%Vote",
+                           "Kwabena Darko","NIP%Vote",
+                           "J.J Rawlings","NDC%Vote",
+                           "Gen. Erskine","PHP%Vote",
+                           "Valid Votes","Turnout%",
+                           "Tt_Reg_Voters")
+
+# confirm the changes in column header
+colnames(dframe_1992)
+
+head(dframe_1992, n=3)
+
+# delete the next 2 rows as they are a duplication of the column headers
+# remove all empty rows with na.omit()
+dframe_1992 <- dframe_1992[-c(1:2),]
+dframe_1992 <- na.omit(dframe_1992)
+
+# reset the row names to start from 1,...
+rownames(dframe_1992) <- seq(length=nrow(dframe_1992))
+
+# view the dimensions (number of rows and columns)
+dim(dframe_1992)
+```
+
+# Putting the data into a long format
+One of the "Principles of tidy data" says observations should be rows and variables be stated as columns. A quick quiz: is the dataframe in a tidy format? 1, 2, 3 secs, 4 and 5. Time is up.
+
+No, it's not tidy. The columns from `A.Adu Boahen` to `PHP%Vote` can be placed into 2 columns: `Candidate` and `PercentVote`. So each candidate has data for the number of valid votes per region and the vote in percent. After many tries, I decided to use 2 functions: **dframe_Names** and **dframe_Percent**.
+## *dframe_Names*
+```{r warning=FALSE, message=FALSE}
+dframe_Names <- function(dframe, rowNum){
+    namesOnly <- dframe[, !grepl("%", colnames(dframe))]
+    namesOnly <- gather(namesOnly, Candidate, NumVote, -1)
+    namesOnly <- namesOnly[-c(rowNum:nrow(namesOnly)), ]
+    
+    return(namesOnly)
+}
+```
+
+This function takes 2 arguments: *dataframe* and *row number*. The row number is important as we want details about the candidates only. Any other information per region such as valid votes, the percentage of turnout and the total number of registered voters are not needed.
+- *1st line*: Extract columns that do not have '%' in their names. 
+- *2nd line*: Collapse, the extracted columns into key-value pairs with the exception of the **Region** column (-1)
+- *3rd line*: Delete all rows that do not have a canidate's name.
+
+For line 3, let me expain further. 5 candidates stood for this election and there are 10 regions in this dataset. If we each candidate/region combination per row, then a total of 50 rows are all that we require since the first 5 columns returned from line 1 are names of candidates.This means that rows 51 till the end of dataframe contain values from the columns Valid Vote, Turnout% and Tt_Reg_Voters and we do not want these rows as part of the returned dataframe.
+- *4th line*: pass the dataframe to the variable that call this function
+
+```{r warning=FALSE, message=FALSE}
+# call the function: pass dframe_1992 and 51 as arguments
+names_1992 <- dframe_Names(dframe_1992, 51)
+dim(names_1992)
+head(names_1992)
+```
+
+## dframe_Percent
+The function returns the party name and the votes as a percentage for each candidate. This function follows in the footsteps of **dframe_Names**. The major difference is:
+- Region column was added as the returned columns from `grepl` does not include the  names of the regions.
+- Column Turnout% was removed.
+- PartyName was also added created the PartyName column.
+The function takes 2 arguments: a dataframe and the row number to delete from.
+```{r}
+dframe_Percent <- function(dframe, rowNum){
+    percentOnly <- dframe[,grepl("%",colnames(dframe))]
+    # add the Regions
+    percentOnly <- percentOnly %>%
+        mutate(Region = c("WESTERN","CENTRAL","GT ACCRA","VOLTA",
+                          "EASTERN","ASHANTI","B/AHAFO","NORTHERN",
+                          "UPPER EAST","UPPER WEST"),
+               `Turnout%` = NULL)
+
+    # convert from wide to long format
+    # separate to get party name
+    percentLong <- percentOnly %>%
+        gather(Details, PercentVote) %>%
+        separate(Details, c("PartyName","Vote"),"%")
+
+    percentLong <- percentLong[-c(rowNum:nrow(percentLong)),]
+    return(percentLong)
+}
+```
+
+Just as with the **dframe_Names** function we pass a dataframe and the row number to delete the extra rows from. We pass 51 as the data from the 51st to the 60th row doesn't contain data about any candidate.
+
+Don't worry if a warning message about missing pieces is shown. The Region values do not have a % character so R fills it with NA and informs you about it.
+```{r message=FALSE}
+percent_1992 <- dframe_Percent(dframe_1992, 51)
+dim(percent_1992)
+head(percent_1992)
+```
+
+# Combining dataframes
+Final step is to combine both dataframes.Also, we need to delete the 5th column as it is a repetition of the word *Vote*
+```{r message=FALSE, warning=FALSE}
+full_1992 <- cbind(names_1992, percent_1992)
+# delete 5th column
+full_1992 <- full_1992[, -5]
+
+full_1992
+
+full_1992[,1] <- as.factor(full_1992[,1])
+full_1992[,5] <- as.numeric(full_1992[,5])
+
+dim(full_1992)
+head(full_1992)
+```
+
+## Quick sanity check
+A check through our dataframe shows that the Percentage vote for Dr. Hilla Liman for the Greater Accra Region was supposed to be 4.03 instead of 403%
+```{r message=FALSE, warning=FALSE}
+full_1992[13,5] <- 4.03
+```
+I am glad you made it this far. The dataset is available [here](https://github.com/maryjonah/maryjonah.github.io/blob/master/2018/08/episode-1-the-1992-presidential-results-rmd/presidential_results_1992.csv). Thank you and do well to check the next episode.
+
+*NB: In other articles J.J Rawlings represented Progressive Alliance. It was a coalition made up of the political parties: National Democrati Congress, National Covention Party and Every Ghanaian Living Everywhere.*

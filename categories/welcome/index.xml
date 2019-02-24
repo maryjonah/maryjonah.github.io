@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Welcome on Mary Jonah</title>
+    <link>https://maryjonah.github.io/categories/welcome/</link>
+    <description>Recent content in Welcome on Mary Jonah</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://maryjonah.github.io/categories/welcome/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Welcome to my Blog</title>
+      <link>https://maryjonah.github.io/2017/10/welcome-to-my-blog/</link>
+      <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://maryjonah.github.io/2017/10/welcome-to-my-blog/</guid>
+      <description>Hello World,
+My name is Mary Jonah, from Ghana. Currently, a web developer with an Bsc in Information Technology with a dream of becoming a Data Scientist.
+I created this blog as I have been a beneficiary of posts from other blogs hence in the same measure I also want to give back with what I know. I hope you learn while you are here.
+Enjoy.</description>
+    </item>
+    
+  </channel>
+</rss>

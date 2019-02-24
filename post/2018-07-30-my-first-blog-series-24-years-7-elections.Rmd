@@ -1,0 +1,19 @@
+---
+title: "My first blog series - 24 years 7 elections"
+author: "Mary Jonah"
+date: 2018-07-30
+slug: my-first-blog-series-24-years-7-elections
+categories: ["elections", "ghana", "blog"]
+tags: []
+---
+
+Hello everyone, after the very long break I am back. It wasn't intentional: work and personal stuff but I am excited to be back. And as the popular phrase says "I am back with a baaaaang!!".
+![Miss Me? I am back image](https://media.makeameme.org/created/i-am-back-5a60e1.jpg)[Image Source](https://media.makeameme.org/created/i-am-back-5a60e1.jpg)
+
+
+I am excited to announce that I will be starting a series of blog posts from Wednesday, the 1st of August 2018 about Ghanaian elections. First, will show you how to clean them and then analyze election trends since 1992. Why elections? I go as far back as the [5th of December 2016](https://www.facebook.com/photo.php?fbid=10205676670115670&set=pb.1822191015.-2207520000.1532946480.&type=3&theater) when I used [Canva](https://www.canva.com) to analyze the age distribution, number of candidates, polling stations and parliamentary seats for the 10 regions in Ghana.
+
+For a very long time, after the elections I tried to get data about elections in Ghana but was unsuccessful. Those I got were either in formats that were not immediately accessible: **summarized as reports in pdf or did not have most of the data I needed**. So, I am taking the challenge to create a dataset of the election results from 1992 till the just ended 2016 Ghanaian elections.
+
+It is going to be fun and challenging and I will be in touch with some of you (yes youuuu) if I require any help.
+All the best to me and off I go. 

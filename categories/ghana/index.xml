@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ghana on Mary Jonah</title>
+    <link>https://maryjonah.github.io/categories/ghana/</link>
+    <description>Recent content in Ghana on Mary Jonah</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://maryjonah.github.io/categories/ghana/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Episode 3: Part 2 of the 1996 Presidential Elections</title>
+      <link>https://maryjonah.github.io/2019/02/episode-3-part-2-of-the-1996-presidential-elections/</link>
+      <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://maryjonah.github.io/2019/02/episode-3-part-2-of-the-1996-presidential-elections/</guid>
+      <description>IntroductionAt the end of Part 1 of Episode 3 on my series on Ghanaian elections, I performed a quick sum of the percentage values obtained by the political parties grouping them by region and some had 101%. This figure was exclusive of the percentage of rejected ballots.
+Sum of Percentage Values Per Region for Parties
+This did not sit well with me, so I decided to enquire from people whom I believe know much about elections than myself.</description>
+    </item>
+    
+    <item>
+      <title>Episode 3:The 1996 Presidential Elections-Part 1</title>
+      <link>https://maryjonah.github.io/2019/01/episode-3-the-1996-presidential-elections-part-1/</link>
+      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://maryjonah.github.io/2019/01/episode-3-the-1996-presidential-elections-part-1/</guid>
+      <description>Happy New Year,I wish you all the best in 2019. Last year, I started a blog series on collecting Ghana’s election results from 1992 to 2016. In episode Episode 1 and Episode 2, I showed the process of getting the presidential and parliamentary elections for 1992.The datasets are available here: 1992 presidential elections and 1992 parliamentary elections.
+In this episode I will collect data on the 1996 elections. This data is available on the Electoral Commission of Ghana’s website.</description>
+    </item>
+    
+    <item>
+      <title>Episode 1: The 1992 Presidential Results</title>
+      <link>https://maryjonah.github.io/2018/08/episode-1-the-1992-presidential-results/</link>
+      <pubDate>Wed, 01 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://maryjonah.github.io/2018/08/episode-1-the-1992-presidential-results/</guid>
+      <description>Welcome to the first post of my data analysis: 24 years and 8 elections. Ghana has been described as one of the most democratic countries on th continent of Africa. The country has successfully organised 10 elections since its independence. 8 of which were consecutively held from 1992 to 2016.
+This post will be about the 1992 elections. This was the 3rd election ever held in the country.Data about the presidential elections were stored on the Electoral Commission’s website and is accessible here.</description>
+    </item>
+    
+    <item>
+      <title>My first blog series - 24 years 7 elections</title>
+      <link>https://maryjonah.github.io/2018/07/my-first-blog-series-24-years-7-elections/</link>
+      <pubDate>Mon, 30 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://maryjonah.github.io/2018/07/my-first-blog-series-24-years-7-elections/</guid>
+      <description>Hello everyone, after the very long break I am back. It wasn’t intentional: work and personal stuff but I am excited to be back. And as the popular phrase says “I am back with a baaaaang!!”. Image Source
+I am excited to announce that I will be starting a series of blog posts from Wednesday, the 1st of August 2018 about Ghanaian elections. First, will show you how to clean them and then analyze election trends since 1992.</description>
+    </item>
+    
+    <item>
+      <title>Asempa to Adwuma (The 2017 and 2018 Ghanaian Budgets)</title>
+      <link>https://maryjonah.github.io/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://maryjonah.github.io/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/</guid>
+      <description>This post will be on text mining. I will be using the 2017 and 2018 Budget statements of Ghana for this tutorial.This post will not have in-depth explanation of the results of the analysis but rather show how one can perform analysis on documents all around us. I have provided the links to the documents in the next 2 paragraphs hence one can read and compare how they fare with the results obtained in the post.</description>
+    </item>
+    
+  </channel>
+</rss>
