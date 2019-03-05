@@ -1,0 +1,197 @@
+---
+title: "Episode 2:The 1992 Parliamentary Results"
+author: "Mary Jonah"
+date: '2018-08-18'
+slug: episode-2-the-1992-parliamentary-results
+categories: ["elections", "ghana"]
+tags: []
+---
+
+Welcome to the second episode on my journey to get data on Ghana's elections since 1992.In the [first](http://www.maryjonah.me/2018/08/episode-1-the-1992-presidential-results-rmd/) post, we cleaned the 1992 presidential elections,click [here](https://github.com/maryjonah/maryjonah.github.io/blob/master/ghana_elections/1992/presidential_results_1992.csv) for the data. Today we are going to walk through the process of cleaning the 1992 parliamentary results. 
+
+General elections are held every 4 years in Ghana, during the elections there are 2 positions voters are to fill:
+
+1. **Presidential**: The person with the highest vote becomes the president of Ghana. He/She is an individual who represents a political party and is selected by delegates who represent a section of people in that political party. 
+2. **Parliamentary**: Unlike presidential candidates,only people from a constituency (there are multiple constituencies in a region) vote for parliamentary aspirants.
+
+Now back to the main course; *parliamentary aspirant name with hot spicy constituency differentiated by party name and for dessert the region the constituency is located in*.
+
+## Importing Libraries and Data Extraction
+The source of this data was [Wikipedia](https://en.wikipedia.org/wiki/MPs_elected_in_the_Ghanaian_parliamentary_election,_1992). On the page I chose the data on the main table. My favourite R library to scrape data on the web is ***rvest***. ***tidyverse*** is another package I love to work with. It is an amazing collection of other R packages *(dplyr, tidyr, ggplot2, forcats, purrr)* which make various aspects of data analysis very easy; data manipulation, reading data files, string manipulation.
+Remeber that these 2 packages do not come with the base R hence they need to be installed via the command
+`install.packages('packageNameHere')`
+
+```{r message=FALSE, warning=FALSE}
+library(rvest)
+library(tidyverse)
+
+# get data from Wikipedia and convert to table format
+html_Parliament <- read_html("https://en.wikipedia.org/wiki/MPs_elected_in_the_Ghanaian_parliamentary_election,_1992")
+html_MP <- html_table(html_nodes(html_Parliament, ".wikitable")[[2]],
+           fill = TRUE)
+
+# print the first few rows of the dataframe
+head(html_MP)
+```
+## Extracting Regional Information
+html_MP currently is a dataframe with 220 rows with 6 columns. Take a look at the data [here](https://github.com/maryjonah/maryjonah.github.io/blob/master/ghana_elections/1992/raw_data_1992_parliamentary_results.csv).
+
+From the link, we can see that the parliamentary results are stored as follows:
+
+**
+1. The region name with the number of seats: repeated across all 6 columns.
+2. The column headings: Constituency, Elected MP, Elected Party and 3 NA columns.
+3. The rest are rows each representing a parliamentary constituency result in the region **1**.
+**
+
+Remember these are repeated for each constituency and region. The question now is **How do you clean the dataframe and get each constituency/region combination?**.
+I was able to answer the question above. My method may be clumsy but it worked. 
+
+A dataframe containing all the rows with the word **Region** was created from **html_MP**. You may not find the use of this dataframe but trust me it will come in handy later.
+```{r message=FALSE, warning=FALSE}
+# dataframe of rows with the word "Region"
+match_Region <- html_MP[grepl("Region",html_MP$X1), ]
+match_Region
+
+# get the rows(in numeric format) from the dataframe above
+regionNum <- rownames(match_Region)
+regionNum <- as.numeric(regionNum)
+regionNum
+```
+
+### Get names of Regions
+We will want to group each constituency result by the region they are found in. So a variable **regionNames** is created from the **html_MP** and it will contain the names of the regions.
+```{r message=FALSE, warning=FALSE}
+regionNames <- match_Region$X1
+regionNames <- gsub(" \\-.+\\]", "", regionNames)
+regionNames <- gsub("Region", "", regionNames)
+
+# remove empty rows on the right
+regionNames <- trimws(regionNames, "right")
+regionNames
+```
+
+### Create empty dataframes
+Next we create 10 empty dataframes. We're going to name the dataframes in the format **"dframe_"+regionNames**. These dataframes are to contain the constituency results for each region.
+```{r message=FALSE, warning=FALSE}
+x=1
+while(x <= 10){
+    colsx <- data.frame(
+        Constituency = factor(),
+        `Elected MP` = factor(),
+        `Elected Party` = factor(),
+        col4 = factor(),
+        col5 = factor(),
+        col6 = factor(),
+        stringsAsFactors = TRUE
+    )
+    assign(paste("dframe_", regionNames[x], sep=""), colsx)
+    x = x+1
+}
+```
+
+Next we store the created dataframes into a list; **allRegions**. The dataframes were intentionally created with the word **dframe_** starting each of them. We will store all variables starting with *dframe_* as a list. A combination of `ls()` and `grepl()` is used to get the variables.
+```{r message=FALSE, warning=FALSE}
+# show all variables beginning with dframe_ in the current session.
+grepl("^dframe_", ls())
+allRegions <- list(ls()[grepl("^dframe_",ls())])
+
+# print the content of allRegions
+allRegions
+```
+
+## Extract Rows into Dataframes
+Now the read deal. All we have done till now is to get the ingredients. It is time to cook. My intention is to extract all the rows between 2 regionNum values ; .i.e. 1st to 36th rows into a dataframe, 36th to 59th row into another dataframe ... 179th and 200th row into a dataframe. One might understand the use of this method when one takes a look at the raw dataframe [**html_MP**](https://github.com/maryjonah/maryjonah.github.io/blob/master/ghana_elections/1992/raw_data_1992_parliamentary_results.csv) once again. The rows corresponding to each 2 row numbers corresponds to a parliamentary results for a region.
+To track the row numbers, 2 numeric vectors are created **prevNum and currentNum**
+```{r message=FALSE, warning=FALSE}
+prevNum <- numeric()
+currentNum <- numeric()
+
+# collect each group of rows and assign to dataframe in list
+for(i in 1:length(regionNum)){
+    if(i == 1){
+        prevNum = 200
+        currentNum = 220
+        allRegions[[1]] <- html_MP[prevNum:currentNum, ]
+    }
+    else{
+        prevNum <- regionNum[i-1]
+        currentNum <- regionNum[i]
+        
+        # assign each element (dataframe) in the list a series of rows
+        allRegions[[i]] <- html_MP[prevNum:currentNum, ]
+    }
+}
+```
+
+## Cleaning the Dataframe
+Now all the rows have been assigned to their respective dataframes in the list **allRegions**. The function *clean_Regions* takes a dataframe and returns a tidy dataframe with 4 columns. Below are some of the actions performed on each argument passed to the function argument:
+
+1. Select the value in the first row, first column as that is the Region Name and will be used to create a new column.
+2. Tidy the selected value. 
+3. Remove the 4th to 6th columns.
+4. Rename the columns of the dataframe.
+5. Remove a few more rows, first 2 and the last row of each dataframe.
+6. Assign the value from 1. to a new column **Region**
+7. Reset the rows of the columns counting from 1 to the length of the dataframe.
+
+```{r message=FALSE, warning=FALSE}
+clean_Regions <- function(dframeName){
+    
+    # extract the region's name 
+    col_Region <- dframeName[1,1]
+    col_Region <- gsub("\\-.+\\]", "", col_Region)
+    col_Region <- gsub("Region", "", col_Region)
+    col_Region <- trimws(col_Region, "right")
+    
+    # delete the 4th to 6th column and update the column names
+    dframeName <- dframeName[, -c(4:6)]
+    colnames(dframeName) <- c("Constituency", "Elected MP", "Elected Party")
+    
+    # delete the 1st, 2nd and final rows
+    # create a new column Region
+    dframeName <- dframeName[-c(1:2, nrow(dframeName)), ]
+    dframeName$Region <- col_Region
+    
+    rownames(dframeName) <- seq(length.out=nrow(dframeName))
+    
+    return(dframeName)
+    
+}
+```
+
+### Applying the function
+There are 10 dataframes in the list *allRegions*. We can apply the function *clean_Regions* on each dataframe in the list. Using the for loop we clean each dataframe and assign it back to the list
+```{r message=FALSE, warning=FALSE}
+for(i in 1:length(allRegions)){
+    allRegions[[i]] <- clean_Regions(allRegions[[i]])
+}
+```
+### Bind Rows
+To get all 10 cleaned dataframes into a single dataframe, we use the `bind_rows()` from the **tidyverse** package
+```{r message=FALSE, warning=FALSE}
+allRegions <- bind_rows(allRegions)
+head(allRegions)
+```
+
+### Sanity Check
+We need to perform a sanity check on the data. 
+```{r message=FALSE, warning=FALSE}
+nrow(allRegions)
+```
+The number of rows should have been 200 but it is currently 200. Checks show that the final row in the **Western Region** was removed hence it will be added and then we confirm the number of rows.
+```{r message=FALSE, warning=FALSE}
+allRegions <- rbind(allRegions, c("Tarkwa -Nsuaem","Mathew Kojo Kum","NDC","Western"))
+dim(allRegions)
+```
+
+## Conclusion
+It was a very long post, I know but I am glad you were able to come this far. 
+My main take-aways are
+
+* **rvest** is an amazing package. The *html_table()* comes in handy when one wants the data in a tabular format, remember to pass *TRUE* to the  *fill* argument.
+* If a base R function can do the work, go ahead: *gsub* and *grepl* came to the rescue when I needed them.
+* Use loops, use loops, use loops
+* If you need to perform a set of actions more than once,put them into a function.
+
+The final data is available [here](https://github.com/maryjonah/maryjonah.github.io/blob/master/ghana_elections/1992/parliamentary_results_1992.csv).I hope to see you in Episode 3.

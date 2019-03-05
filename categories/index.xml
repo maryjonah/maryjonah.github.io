@@ -2,84 +2,84 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Mary Jonah</title>
-    <link>https://maryjonah.github.io/categories/</link>
+    <link>/categories/</link>
     <description>Recent content in Categories on Mary Jonah</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 18 Oct 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://maryjonah.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Aviation</title>
-      <link>https://maryjonah.github.io/categories/aviation/</link>
+      <link>/categories/aviation/</link>
       <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://maryjonah.github.io/categories/aviation/</guid>
+      <guid>/categories/aviation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Blog</title>
-      <link>https://maryjonah.github.io/categories/blog/</link>
+      <link>/categories/blog/</link>
       <pubDate>Mon, 30 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://maryjonah.github.io/categories/blog/</guid>
+      <guid>/categories/blog/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Budget</title>
-      <link>https://maryjonah.github.io/categories/budget/</link>
+      <link>/categories/budget/</link>
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://maryjonah.github.io/categories/budget/</guid>
+      <guid>/categories/budget/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Elections</title>
-      <link>https://maryjonah.github.io/categories/elections/</link>
+      <link>/categories/elections/</link>
       <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://maryjonah.github.io/categories/elections/</guid>
+      <guid>/categories/elections/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Financial Aid</title>
-      <link>https://maryjonah.github.io/categories/financial-aid/</link>
+      <link>/categories/financial-aid/</link>
       <pubDate>Wed, 30 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://maryjonah.github.io/categories/financial-aid/</guid>
+      <guid>/categories/financial-aid/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ghana</title>
-      <link>https://maryjonah.github.io/categories/ghana/</link>
+      <link>/categories/ghana/</link>
       <pubDate>Sun, 24 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://maryjonah.github.io/categories/ghana/</guid>
+      <guid>/categories/ghana/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tableau</title>
-      <link>https://maryjonah.github.io/categories/tableau/</link>
+      <link>/categories/tableau/</link>
       <pubDate>Wed, 30 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://maryjonah.github.io/categories/tableau/</guid>
+      <guid>/categories/tableau/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Welcome</title>
-      <link>https://maryjonah.github.io/categories/welcome/</link>
+      <link>/categories/welcome/</link>
       <pubDate>Tue, 17 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://maryjonah.github.io/categories/welcome/</guid>
+      <guid>/categories/welcome/</guid>
       <description></description>
     </item>
     

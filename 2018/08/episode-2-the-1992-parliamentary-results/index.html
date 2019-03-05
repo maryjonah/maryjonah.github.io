@@ -8,29 +8,33 @@
 <meta name="generator" content="Hugo 0.54.0 with theme Tranquilpeak 0.4.3-SNAPSHOT">
 <meta name="author" content="Mary Jonah">
 <meta name="keywords" content="">
-<meta name="description" content="Hello everyone, after the very long break I am back. It wasn’t intentional: work and personal stuff but I am excited to be back. And as the popular phrase says “I am back with a baaaaang!!”. Image Source
-I am excited to announce that I will be starting a series of blog posts from Wednesday, the 1st of August 2018 about Ghanaian elections. First, will show you how to clean them and then analyze election trends since 1992.">
+<meta name="description" content="Welcome to the second episode on my journey to get data on Ghana’s elections since 1992.In the first post, we cleaned the 1992 presidential elections,click here for the data. Today we are going to walk through the process of cleaning the 1992 parliamentary results.
+General elections are held every 4 years in Ghana, during the elections there are 2 positions voters are to fill:
+Presidential: The person with the highest vote becomes the president of Ghana.">
 
 
-<meta property="og:description" content="Hello everyone, after the very long break I am back. It wasn’t intentional: work and personal stuff but I am excited to be back. And as the popular phrase says “I am back with a baaaaang!!”. Image Source
-I am excited to announce that I will be starting a series of blog posts from Wednesday, the 1st of August 2018 about Ghanaian elections. First, will show you how to clean them and then analyze election trends since 1992.">
+<meta property="og:description" content="Welcome to the second episode on my journey to get data on Ghana’s elections since 1992.In the first post, we cleaned the 1992 presidential elections,click here for the data. Today we are going to walk through the process of cleaning the 1992 parliamentary results.
+General elections are held every 4 years in Ghana, during the elections there are 2 positions voters are to fill:
+Presidential: The person with the highest vote becomes the president of Ghana.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="My first blog series - 24 years 7 elections">
-<meta name="twitter:title" content="My first blog series - 24 years 7 elections">
-<meta property="og:url" content="/2018/07/my-first-blog-series-24-years-7-elections/">
-<meta property="twitter:url" content="/2018/07/my-first-blog-series-24-years-7-elections/">
+<meta property="og:title" content="Episode 2:The 1992 Parliamentary Results">
+<meta name="twitter:title" content="Episode 2:The 1992 Parliamentary Results">
+<meta property="og:url" content="/2018/08/episode-2-the-1992-parliamentary-results/">
+<meta property="twitter:url" content="/2018/08/episode-2-the-1992-parliamentary-results/">
 <meta property="og:site_name" content="Mary Jonah">
-<meta property="og:description" content="Hello everyone, after the very long break I am back. It wasn’t intentional: work and personal stuff but I am excited to be back. And as the popular phrase says “I am back with a baaaaang!!”. Image Source
-I am excited to announce that I will be starting a series of blog posts from Wednesday, the 1st of August 2018 about Ghanaian elections. First, will show you how to clean them and then analyze election trends since 1992.">
-<meta name="twitter:description" content="Hello everyone, after the very long break I am back. It wasn’t intentional: work and personal stuff but I am excited to be back. And as the popular phrase says “I am back with a baaaaang!!”. Image Source
-I am excited to announce that I will be starting a series of blog posts from Wednesday, the 1st of August 2018 about Ghanaian elections. First, will show you how to clean them and then analyze election trends since 1992.">
+<meta property="og:description" content="Welcome to the second episode on my journey to get data on Ghana’s elections since 1992.In the first post, we cleaned the 1992 presidential elections,click here for the data. Today we are going to walk through the process of cleaning the 1992 parliamentary results.
+General elections are held every 4 years in Ghana, during the elections there are 2 positions voters are to fill:
+Presidential: The person with the highest vote becomes the president of Ghana.">
+<meta name="twitter:description" content="Welcome to the second episode on my journey to get data on Ghana’s elections since 1992.In the first post, we cleaned the 1992 presidential elections,click here for the data. Today we are going to walk through the process of cleaning the 1992 parliamentary results.
+General elections are held every 4 years in Ghana, during the elections there are 2 positions voters are to fill:
+Presidential: The person with the highest vote becomes the president of Ghana.">
 <meta property="og:locale" content="en-us">
 
   
-    <meta property="article:published_time" content="2018-07-30T00:00:00">
+    <meta property="article:published_time" content="2018-08-18T00:00:00">
   
   
-    <meta property="article:modified_time" content="2018-07-30T00:00:00">
+    <meta property="article:modified_time" content="2018-08-18T00:00:00">
   
   
   
@@ -38,8 +42,6 @@ I am excited to announce that I will be starting a series of blog posts from Wed
       <meta property="article:section" content="elections">
     
       <meta property="article:section" content="ghana">
-    
-      <meta property="article:section" content="blog">
     
   
   
@@ -65,14 +67,14 @@ I am excited to announce that I will be starting a series of blog posts from Wed
   <meta property="twitter:image" content="/img/maryjonah.jpg">
 
 
-    <title>My first blog series - 24 years 7 elections</title>
+    <title>Episode 2:The 1992 Parliamentary Results</title>
 
     <link rel="icon" href="/favicon.png">
     
 
     
 
-    <link rel="canonical" href="/2018/07/my-first-blog-series-24-years-7-elections/">
+    <link rel="canonical" href="/2018/08/episode-2-the-1992-parliamentary-results/">
 
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -215,15 +217,15 @@ if (!doNotTrack) {
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      My first blog series - 24 years 7 elections
+      Episode 2:The 1992 Parliamentary Results
     </h1>
   
   
   <div class="postShorten-meta post-meta">
     
-      <time itemprop="datePublished" datetime="2018-07-30T00:00:00Z">
+      <time itemprop="datePublished" datetime="2018-08-18T00:00:00Z">
         
-  July 30, 2018
+  August 18, 2018
 
       </time>
     
@@ -234,9 +236,7 @@ if (!doNotTrack) {
     
       <a class="category-link" href="/categories/elections">elections</a>, 
     
-      <a class="category-link" href="/categories/ghana">ghana</a>, 
-    
-      <a class="category-link" href="/categories/blog">blog</a>
+      <a class="category-link" href="/categories/ghana">ghana</a>
     
   
 
@@ -249,10 +249,245 @@ if (!doNotTrack) {
               
 
 
-<p>Hello everyone, after the very long break I am back. It wasn’t intentional: work and personal stuff but I am excited to be back. And as the popular phrase says “I am back with a baaaaang!!”. <img src="https://media.makeameme.org/created/i-am-back-5a60e1.jpg" alt="Miss Me? I am back image" /><a href="https://media.makeameme.org/created/i-am-back-5a60e1.jpg">Image Source</a></p>
-<p>I am excited to announce that I will be starting a series of blog posts from Wednesday, the 1st of August 2018 about Ghanaian elections. First, will show you how to clean them and then analyze election trends since 1992. Why elections? I go as far back as the <a href="https://www.facebook.com/photo.php?fbid=10205676670115670&amp;set=pb.1822191015.-2207520000.1532946480.&amp;type=3&amp;theater">5th of December 2016</a> when I used <a href="https://www.canva.com">Canva</a> to analyze the age distribution, number of candidates, polling stations and parliamentary seats for the 10 regions in Ghana.</p>
-<p>For a very long time, after the elections I tried to get data about elections in Ghana but was unsuccessful. Those I got were either in formats that were not immediately accessible: <strong>summarized as reports in pdf or did not have most of the data I needed</strong>. So, I am taking the challenge to create a dataset of the election results from 1992 till the just ended 2016 Ghanaian elections.</p>
-<p>It is going to be fun and challenging and I will be in touch with some of you (yes youuuu) if I require any help. All the best to me and off I go.</p>
+<p>Welcome to the second episode on my journey to get data on Ghana’s elections since 1992.In the <a href="http://www.maryjonah.me/2018/08/episode-1-the-1992-presidential-results-rmd/">first</a> post, we cleaned the 1992 presidential elections,click <a href="https://github.com/maryjonah/maryjonah.github.io/blob/master/ghana_elections/1992/presidential_results_1992.csv">here</a> for the data. Today we are going to walk through the process of cleaning the 1992 parliamentary results.</p>
+<p>General elections are held every 4 years in Ghana, during the elections there are 2 positions voters are to fill:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Presidential</strong>: The person with the highest vote becomes the president of Ghana. He/She is an individual who represents a political party and is selected by delegates who represent a section of people in that political party.</li>
+<li><strong>Parliamentary</strong>: Unlike presidential candidates,only people from a constituency (there are multiple constituencies in a region) vote for parliamentary aspirants.</li>
+</ol>
+<p>Now back to the main course; <em>parliamentary aspirant name with hot spicy constituency differentiated by party name and for dessert the region the constituency is located in</em>.</p>
+<div id="importing-libraries-and-data-extraction" class="section level2">
+<h2>Importing Libraries and Data Extraction</h2>
+<p>The source of this data was <a href="https://en.wikipedia.org/wiki/MPs_elected_in_the_Ghanaian_parliamentary_election,_1992">Wikipedia</a>. On the page I chose the data on the main table. My favourite R library to scrape data on the web is <strong><em>rvest</em></strong>. <strong><em>tidyverse</em></strong> is another package I love to work with. It is an amazing collection of other R packages <em>(dplyr, tidyr, ggplot2, forcats, purrr)</em> which make various aspects of data analysis very easy; data manipulation, reading data files, string manipulation. Remeber that these 2 packages do not come with the base R hence they need to be installed via the command <code>install.packages('packageNameHere')</code></p>
+<pre class="r"><code>library(rvest)
+library(tidyverse)
+
+# get data from Wikipedia and convert to table format
+html_Parliament &lt;- read_html(&quot;https://en.wikipedia.org/wiki/MPs_elected_in_the_Ghanaian_parliamentary_election,_1992&quot;)
+html_MP &lt;- html_table(html_nodes(html_Parliament, &quot;.wikitable&quot;)[[2]],
+           fill = TRUE)
+
+# print the first few rows of the dataframe
+head(html_MP)</code></pre>
+<pre><code>##                                X1                              X2
+## 1 Ashanti Region - 33 seats[edit] Ashanti Region - 33 seats[edit]
+## 2                    Constituency                      Elected MP
+## 3                   Adansi Asokwa                      John Gyasi
+## 4             Afigya-Sekyere East              Pius M G Griffiths
+## 5             Afigya-Sekyere West           Mrs. Beatrice Aboagye
+## 6                 Ahafo Ano North        George Kwasi Adjei Annim
+##                                X3   X4   X5   X6
+## 1 Ashanti Region - 33 seats[edit] &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 2                   Elected Party &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 3                             NDC &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 4                             NDC &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 5                             NDC &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 6                            EGLE &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</code></pre>
+</div>
+<div id="extracting-regional-information" class="section level2">
+<h2>Extracting Regional Information</h2>
+<p>html_MP currently is a dataframe with 220 rows with 6 columns. Take a look at the data <a href="https://github.com/maryjonah/maryjonah.github.io/blob/master/ghana_elections/1992/raw_data_1992_parliamentary_results.csv">here</a>.</p>
+<p>From the link, we can see that the parliamentary results are stored as follows:</p>
+<p><strong> 1. The region name with the number of seats: repeated across all 6 columns. 2. The column headings: Constituency, Elected MP, Elected Party and 3 NA columns. 3. The rest are rows each representing a parliamentary constituency result in the region </strong>1<strong>. </strong></p>
+<p>Remember these are repeated for each constituency and region. The question now is <strong>How do you clean the dataframe and get each constituency/region combination?</strong>. I was able to answer the question above. My method may be clumsy but it worked.</p>
+<p>A dataframe containing all the rows with the word <strong>Region</strong> was created from <strong>html_MP</strong>. You may not find the use of this dataframe but trust me it will come in handy later.</p>
+<pre class="r"><code># dataframe of rows with the word &quot;Region&quot;
+match_Region &lt;- html_MP[grepl(&quot;Region&quot;,html_MP$X1), ]
+match_Region</code></pre>
+<pre><code>##                                        X1
+## 1         Ashanti Region - 33 seats[edit]
+## 36    Brong Ahafo Region - 21 seats[edit]
+## 59        Central Region - 17 seats[edit]
+## 78        Eastern Region - 26 seats[edit]
+## 106 Greater Accra Region - 22 seats[edit]
+## 130      Northern Region - 23 seats[edit]
+## 155    Upper East Region - 12 seats[edit]
+## 169     Upper West Region - 8 seats[edit]
+## 179         Volta Region - 19 seats[edit]
+## 200       Western Region - 19 seats[edit]
+##                                        X2
+## 1         Ashanti Region - 33 seats[edit]
+## 36    Brong Ahafo Region - 21 seats[edit]
+## 59        Central Region - 17 seats[edit]
+## 78        Eastern Region - 26 seats[edit]
+## 106 Greater Accra Region - 22 seats[edit]
+## 130      Northern Region - 23 seats[edit]
+## 155    Upper East Region - 12 seats[edit]
+## 169     Upper West Region - 8 seats[edit]
+## 179         Volta Region - 19 seats[edit]
+## 200       Western Region - 19 seats[edit]
+##                                        X3                              X4
+## 1         Ashanti Region - 33 seats[edit]                            &lt;NA&gt;
+## 36    Brong Ahafo Region - 21 seats[edit]                            &lt;NA&gt;
+## 59        Central Region - 17 seats[edit]                            &lt;NA&gt;
+## 78        Eastern Region - 26 seats[edit]                            &lt;NA&gt;
+## 106 Greater Accra Region - 22 seats[edit]                            &lt;NA&gt;
+## 130      Northern Region - 23 seats[edit]                            &lt;NA&gt;
+## 155    Upper East Region - 12 seats[edit]                            &lt;NA&gt;
+## 169     Upper West Region - 8 seats[edit]                            &lt;NA&gt;
+## 179         Volta Region - 19 seats[edit]                            &lt;NA&gt;
+## 200       Western Region - 19 seats[edit] Western Region - 19 seats[edit]
+##                                  X5                              X6
+## 1                              &lt;NA&gt;                            &lt;NA&gt;
+## 36                             &lt;NA&gt;                            &lt;NA&gt;
+## 59                             &lt;NA&gt;                            &lt;NA&gt;
+## 78                             &lt;NA&gt;                            &lt;NA&gt;
+## 106                            &lt;NA&gt;                            &lt;NA&gt;
+## 130                            &lt;NA&gt;                            &lt;NA&gt;
+## 155                            &lt;NA&gt;                            &lt;NA&gt;
+## 169                            &lt;NA&gt;                            &lt;NA&gt;
+## 179                            &lt;NA&gt;                            &lt;NA&gt;
+## 200 Western Region - 19 seats[edit] Western Region - 19 seats[edit]</code></pre>
+<pre class="r"><code># get the rows(in numeric format) from the dataframe above
+regionNum &lt;- rownames(match_Region)
+regionNum &lt;- as.numeric(regionNum)
+regionNum</code></pre>
+<pre><code>##  [1]   1  36  59  78 106 130 155 169 179 200</code></pre>
+<div id="get-names-of-regions" class="section level3">
+<h3>Get names of Regions</h3>
+<p>We will want to group each constituency result by the region they are found in. So a variable <strong>regionNames</strong> is created from the <strong>html_MP</strong> and it will contain the names of the regions.</p>
+<pre class="r"><code>regionNames &lt;- match_Region$X1
+regionNames &lt;- gsub(&quot; \\-.+\\]&quot;, &quot;&quot;, regionNames)
+regionNames &lt;- gsub(&quot;Region&quot;, &quot;&quot;, regionNames)
+
+# remove empty rows on the right
+regionNames &lt;- trimws(regionNames, &quot;right&quot;)
+regionNames</code></pre>
+<pre><code>##  [1] &quot;Ashanti&quot;       &quot;Brong Ahafo&quot;   &quot;Central&quot;       &quot;Eastern&quot;      
+##  [5] &quot;Greater Accra&quot; &quot;Northern&quot;      &quot;Upper East&quot;    &quot;Upper West&quot;   
+##  [9] &quot;Volta&quot;         &quot;Western&quot;</code></pre>
+</div>
+<div id="create-empty-dataframes" class="section level3">
+<h3>Create empty dataframes</h3>
+<p>Next we create 10 empty dataframes. We’re going to name the dataframes in the format <strong>“dframe_”+regionNames</strong>. These dataframes are to contain the constituency results for each region.</p>
+<pre class="r"><code>x=1
+while(x &lt;= 10){
+    colsx &lt;- data.frame(
+        Constituency = factor(),
+        `Elected MP` = factor(),
+        `Elected Party` = factor(),
+        col4 = factor(),
+        col5 = factor(),
+        col6 = factor(),
+        stringsAsFactors = TRUE
+    )
+    assign(paste(&quot;dframe_&quot;, regionNames[x], sep=&quot;&quot;), colsx)
+    x = x+1
+}</code></pre>
+<p>Next we store the created dataframes into a list; <strong>allRegions</strong>. The dataframes were intentionally created with the word <strong>dframe_</strong> starting each of them. We will store all variables starting with <em>dframe_</em> as a list. A combination of <code>ls()</code> and <code>grepl()</code> is used to get the variables.</p>
+<pre class="r"><code># show all variables beginning with dframe_ in the current session.
+grepl(&quot;^dframe_&quot;, ls())</code></pre>
+<pre><code>##  [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [12] FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<pre class="r"><code>allRegions &lt;- list(ls()[grepl(&quot;^dframe_&quot;,ls())])
+
+# print the content of allRegions
+allRegions</code></pre>
+<pre><code>## [[1]]
+##  [1] &quot;dframe_Ashanti&quot;       &quot;dframe_Brong Ahafo&quot;   &quot;dframe_Central&quot;      
+##  [4] &quot;dframe_Eastern&quot;       &quot;dframe_Greater Accra&quot; &quot;dframe_Northern&quot;     
+##  [7] &quot;dframe_Upper East&quot;    &quot;dframe_Upper West&quot;    &quot;dframe_Volta&quot;        
+## [10] &quot;dframe_Western&quot;</code></pre>
+</div>
+</div>
+<div id="extract-rows-into-dataframes" class="section level2">
+<h2>Extract Rows into Dataframes</h2>
+<p>Now the read deal. All we have done till now is to get the ingredients. It is time to cook. My intention is to extract all the rows between 2 regionNum values ; .i.e. 1st to 36th rows into a dataframe, 36th to 59th row into another dataframe … 179th and 200th row into a dataframe. One might understand the use of this method when one takes a look at the raw dataframe <a href="https://github.com/maryjonah/maryjonah.github.io/blob/master/ghana_elections/1992/raw_data_1992_parliamentary_results.csv"><strong>html_MP</strong></a> once again. The rows corresponding to each 2 row numbers corresponds to a parliamentary results for a region. To track the row numbers, 2 numeric vectors are created <strong>prevNum and currentNum</strong></p>
+<pre class="r"><code>prevNum &lt;- numeric()
+currentNum &lt;- numeric()
+
+# collect each group of rows and assign to dataframe in list
+for(i in 1:length(regionNum)){
+    if(i == 1){
+        prevNum = 200
+        currentNum = 220
+        allRegions[[1]] &lt;- html_MP[prevNum:currentNum, ]
+    }
+    else{
+        prevNum &lt;- regionNum[i-1]
+        currentNum &lt;- regionNum[i]
+        
+        # assign each element (dataframe) in the list a series of rows
+        allRegions[[i]] &lt;- html_MP[prevNum:currentNum, ]
+    }
+}</code></pre>
+</div>
+<div id="cleaning-the-dataframe" class="section level2">
+<h2>Cleaning the Dataframe</h2>
+<p>Now all the rows have been assigned to their respective dataframes in the list <strong>allRegions</strong>. The function <em>clean_Regions</em> takes a dataframe and returns a tidy dataframe with 4 columns. Below are some of the actions performed on each argument passed to the function argument:</p>
+<ol style="list-style-type: decimal">
+<li>Select the value in the first row, first column as that is the Region Name and will be used to create a new column.</li>
+<li>Tidy the selected value.</li>
+<li>Remove the 4th to 6th columns.</li>
+<li>Rename the columns of the dataframe.</li>
+<li>Remove a few more rows, first 2 and the last row of each dataframe.</li>
+<li>Assign the value from 1. to a new column <strong>Region</strong></li>
+<li>Reset the rows of the columns counting from 1 to the length of the dataframe.</li>
+</ol>
+<pre class="r"><code>clean_Regions &lt;- function(dframeName){
+    
+    # extract the region&#39;s name 
+    col_Region &lt;- dframeName[1,1]
+    col_Region &lt;- gsub(&quot;\\-.+\\]&quot;, &quot;&quot;, col_Region)
+    col_Region &lt;- gsub(&quot;Region&quot;, &quot;&quot;, col_Region)
+    col_Region &lt;- trimws(col_Region, &quot;right&quot;)
+    
+    # delete the 4th to 6th column and update the column names
+    dframeName &lt;- dframeName[, -c(4:6)]
+    colnames(dframeName) &lt;- c(&quot;Constituency&quot;, &quot;Elected MP&quot;, &quot;Elected Party&quot;)
+    
+    # delete the 1st, 2nd and final rows
+    # create a new column Region
+    dframeName &lt;- dframeName[-c(1:2, nrow(dframeName)), ]
+    dframeName$Region &lt;- col_Region
+    
+    rownames(dframeName) &lt;- seq(length.out=nrow(dframeName))
+    
+    return(dframeName)
+    
+}</code></pre>
+<div id="applying-the-function" class="section level3">
+<h3>Applying the function</h3>
+<p>There are 10 dataframes in the list <em>allRegions</em>. We can apply the function <em>clean_Regions</em> on each dataframe in the list. Using the for loop we clean each dataframe and assign it back to the list</p>
+<pre class="r"><code>for(i in 1:length(allRegions)){
+    allRegions[[i]] &lt;- clean_Regions(allRegions[[i]])
+}</code></pre>
+</div>
+<div id="bind-rows" class="section level3">
+<h3>Bind Rows</h3>
+<p>To get all 10 cleaned dataframes into a single dataframe, we use the <code>bind_rows()</code> from the <strong>tidyverse</strong> package</p>
+<pre class="r"><code>allRegions &lt;- bind_rows(allRegions)
+head(allRegions)</code></pre>
+<pre><code>##     Constituency               Elected MP Elected Party  Region
+## 1    Ahanta West             Francis Fynn           NDC Western
+## 2 Amenfi Central       Dr. John Frank Abu           NDC Western
+## 3    Amenfi East             George Buadi           NDC Western
+## 4    Amenfi West     Joseph King Amankpah           NDC Western
+## 5   Aowin-Suaman     John Kwekucher Ackah           NDC Western
+## 6            Bia Christian Kwabena Asante           NDC Western</code></pre>
+</div>
+<div id="sanity-check" class="section level3">
+<h3>Sanity Check</h3>
+<p>We need to perform a sanity check on the data.</p>
+<pre class="r"><code>nrow(allRegions)</code></pre>
+<pre><code>## [1] 199</code></pre>
+<p>The number of rows should have been 200 but it is currently 200. Checks show that the final row in the <strong>Western Region</strong> was removed hence it will be added and then we confirm the number of rows.</p>
+<pre class="r"><code>allRegions &lt;- rbind(allRegions, c(&quot;Tarkwa -Nsuaem&quot;,&quot;Mathew Kojo Kum&quot;,&quot;NDC&quot;,&quot;Western&quot;))
+dim(allRegions)</code></pre>
+<pre><code>## [1] 200   4</code></pre>
+</div>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>It was a very long post, I know but I am glad you were able to come this far. My main take-aways are</p>
+<ul>
+<li><strong>rvest</strong> is an amazing package. The <em>html_table()</em> comes in handy when one wants the data in a tabular format, remember to pass <em>TRUE</em> to the <em>fill</em> argument.</li>
+<li>If a base R function can do the work, go ahead: <em>gsub</em> and <em>grepl</em> came to the rescue when I needed them.</li>
+<li>Use loops, use loops, use loops</li>
+<li>If you need to perform a set of actions more than once,put them into a function.</li>
+</ul>
+<p>The final data is available <a href="https://github.com/maryjonah/maryjonah.github.io/blob/master/ghana_elections/1992/parliamentary_results_1992.csv">here</a>.I hope to see you in Episode 3.</p>
+</div>
 
               
             </div>
@@ -268,7 +503,7 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/08/episode-1-the-1992-presidential-results/" data-tooltip="Episode 1: The 1992 Presidential Results">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/episode-3-the-1996-presidential-elections-part-1/" data-tooltip="Episode 3:The 1996 Presidential Elections-Part 1">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -276,7 +511,7 @@ if (!doNotTrack) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/" data-tooltip="Asempa to Adwuma (The 2017 and 2018 Ghanaian Budgets)">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/08/episode-1-the-1992-presidential-results/" data-tooltip="Episode 1: The 1992 Presidential Results">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -294,19 +529,19 @@ if (!doNotTrack) {
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/07/my-first-blog-series-24-years-7-elections/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/08/episode-2-the-1992-parliamentary-results/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/07/my-first-blog-series-24-years-7-elections/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/08/episode-2-the-1992-parliamentary-results/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2018/07/my-first-blog-series-24-years-7-elections/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2018/08/episode-2-the-1992-parliamentary-results/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -354,7 +589,7 @@ if (!doNotTrack) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/08/episode-1-the-1992-presidential-results/" data-tooltip="Episode 1: The 1992 Presidential Results">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/01/episode-3-the-1996-presidential-elections-part-1/" data-tooltip="Episode 3:The 1996 Presidential Elections-Part 1">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -362,7 +597,7 @@ if (!doNotTrack) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/" data-tooltip="Asempa to Adwuma (The 2017 and 2018 Ghanaian Budgets)">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2018/08/episode-1-the-1992-presidential-results/" data-tooltip="Episode 1: The 1992 Presidential Results">
               
                   <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
                   <i class="fa fa-angle-right"></i>
@@ -380,19 +615,19 @@ if (!doNotTrack) {
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/07/my-first-blog-series-24-years-7-elections/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/08/episode-2-the-1992-parliamentary-results/">
               <i class="fa fa-facebook-official"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/07/my-first-blog-series-24-years-7-elections/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/08/episode-2-the-1992-parliamentary-results/">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2018/07/my-first-blog-series-24-years-7-elections/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2018/08/episode-2-the-1992-parliamentary-results/">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -422,19 +657,19 @@ if (!doNotTrack) {
   <ul class="share-options">
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F07%2Fmy-first-blog-series-24-years-7-elections%2F">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F08%2Fepisode-2-the-1992-parliamentary-results%2F">
           <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F07%2Fmy-first-blog-series-24-years-7-elections%2F">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F08%2Fepisode-2-the-1992-parliamentary-results%2F">
           <i class="fa fa-twitter"></i><span>Share on Twitter</span>
         </a>
       </li>
     
       <li class="share-option">
-        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2018%2F07%2Fmy-first-blog-series-24-years-7-elections%2F">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2018%2F08%2Fepisode-2-the-1992-parliamentary-results%2F">
           <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
         </a>
       </li>
@@ -719,9 +954,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = '\/2018\/07\/my-first-blog-series-24-years-7-elections\/';
+          this.page.url = '\/2018\/08\/episode-2-the-1992-parliamentary-results\/';
           
-            this.page.identifier = '\/2018\/07\/my-first-blog-series-24-years-7-elections\/'
+            this.page.identifier = '\/2018\/08\/episode-2-the-1992-parliamentary-results\/'
           
         };
         (function() {
