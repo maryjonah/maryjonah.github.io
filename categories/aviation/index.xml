@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Aviation on Mary Jonah</title>
-    <link>/categories/aviation/</link>
+    <link>https://maryjonah.github.io/categories/aviation/</link>
     <description>Recent content in Aviation on Mary Jonah</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 18 Oct 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/aviation/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://maryjonah.github.io/categories/aviation/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Decoding Busiest Airport Numbers</title>
-      <link>/2017/10/decoding-busiest-airport-numbers/</link>
+      <link>https://maryjonah.github.io/2017/10/decoding-busiest-airport-numbers/</link>
       <pubDate>Wed, 18 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/10/decoding-busiest-airport-numbers/</guid>
+      <guid>https://maryjonah.github.io/2017/10/decoding-busiest-airport-numbers/</guid>
       <description>Since the invention of the first airplane by Wilbur and Orville Wright in December 17, 1903, it has become one of the most important modes of transportation especially for long distances and the airports have facilitated this. Airports have metamorphosized from becoming “houses” for airplanes to include shopping malls, offices and showers.
 Different institutions have come up with rankings of airports, such as that of SKYTRAX WORLD AIRPORT AWARDS obtained by using customer satisfaction surveys, AirHelp Score’s Airport Worldwide Rankings which uses a combination of On-Time Performance, Quality of Service and Passenger sentiment.</description>
     </item>
