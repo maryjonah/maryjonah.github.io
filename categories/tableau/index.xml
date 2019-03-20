@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tableau on Mary Jonah</title>
-    <link>https://maryjonah.github.io/categories/tableau/</link>
+    <link>/categories/tableau/</link>
     <description>Recent content in Tableau on Mary Jonah</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 30 Jan 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://maryjonah.github.io/categories/tableau/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/tableau/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>How I got Financial Aid from Coursera for &#34;Fundamentals of Visualization with Tableau&#34;</title>
-      <link>https://maryjonah.github.io/2019/01/how-i-got-financial-aid-from-coursera-for-fundamentals-of-visualization-with-tableau/</link>
+      <link>/2019/01/how-i-got-financial-aid-from-coursera-for-fundamentals-of-visualization-with-tableau/</link>
       <pubDate>Wed, 30 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://maryjonah.github.io/2019/01/how-i-got-financial-aid-from-coursera-for-fundamentals-of-visualization-with-tableau/</guid>
+      <guid>/2019/01/how-i-got-financial-aid-from-coursera-for-fundamentals-of-visualization-with-tableau/</guid>
       <description>IntroductionI am really humbled by the words of encouragement I have received so far. It is these actions that keep me going during tough times. Sometimes I think I have it all figured out, at other times my efforts look like a waste of time.
 It is in this light that I want to share an amazing feat. I completed the Fundamentals of Visualization with Tableau offered on Coursera by University of Carlifonia kind courtesy of a Financial Aid I received from Coursera.</description>
     </item>

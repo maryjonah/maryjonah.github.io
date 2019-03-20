@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Budget on Mary Jonah</title>
-    <link>https://maryjonah.github.io/categories/budget/</link>
+    <link>/categories/budget/</link>
     <description>Recent content in Budget on Mary Jonah</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 24 Nov 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://maryjonah.github.io/categories/budget/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/budget/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Asempa to Adwuma (The 2017 and 2018 Ghanaian Budgets)</title>
-      <link>https://maryjonah.github.io/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/</link>
+      <link>/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/</link>
       <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://maryjonah.github.io/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/</guid>
+      <guid>/2017/11/asempa-to-adwuma-the-2017-and-2018-ghanaian-budgets/</guid>
       <description>This post will be on text mining. I will be using the 2017 and 2018 Budget statements of Ghana for this tutorial.This post will not have in-depth explanation of the results of the analysis but rather show how one can perform analysis on documents all around us. I have provided the links to the documents in the next 2 paragraphs hence one can read and compare how they fare with the results obtained in the post.</description>
     </item>
     
